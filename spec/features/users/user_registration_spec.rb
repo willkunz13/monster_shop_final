@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe "As a visitor" do
   describe "I can see a registration page" do
     it "has a form to fill in" do
+      visit '/merchants'
+
       within 'nav' do
         click_on 'Register'
       end
