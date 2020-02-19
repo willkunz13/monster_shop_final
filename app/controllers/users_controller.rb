@@ -2,14 +2,14 @@ class UsersController < ApplicationController
   def new; end
 
   def create
-    new_user = User.create(user_params)
+    new_user = User.new(user_params)
 
     if new_user.save
-      redirect_to "/profile/#{new_user.id}"
+      redirect_to '/profile'
       flash[:notice] = 'You have successfully created a user.'
     else
-      redirect_to '/register'
-      flash[:notice] = 'Missing Required Fields.'
+      flash[:notice] = new_user.errors.full_messages.to_sentence
+      render :new
     end
   end
 
