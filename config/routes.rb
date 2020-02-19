@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 	get '/', to: 'welcome#show'
 	get '/welcome', to: 'welcome#show'
+	get '/login', to: 'sessions#new'
 
   get '/merchants', to: 'merchants#index'
   get '/merchants/new', to: 'merchants#new'
