@@ -37,4 +37,8 @@ Rails.application.routes.draw do
   get "/register", to: "users#new"
 	post "/register", to: "users#create"
 	get "/profile/:id", to: "users#show"
+
+	namespace :user do
+		get "/profile", to: "profile#show"
+	end
 end
