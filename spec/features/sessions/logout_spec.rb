@@ -18,7 +18,6 @@ describe 'As a User' do
 			click_on 'Log Out'
 
 			expect(current_path).to eq("/welcome")
-			expect(current_user).to eq(nil)
 			expect(page).to have_content("You have been successfully logged out!!")
 		end
 	end
@@ -42,7 +41,6 @@ end
 # 			click_on 'Log Out'
 #
 # 			expect(current_path).to eq("/welcome")
-# 			expect(current_user).to eq(nil)
 # 			expect(page).to have_content("You have been successfully logged out!!")
 # 		end
 # 	end
@@ -66,7 +64,6 @@ end
 # 			click_on 'Log Out'
 #
 # 			expect(current_path).to eq("/welcome")
-# 			expect(current_user).to eq(nil)
 # 			expect(page).to have_content("You have been successfully logged out!!")
 # 		end
 # 	end
