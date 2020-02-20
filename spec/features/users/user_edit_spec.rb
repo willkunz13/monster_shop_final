@@ -22,6 +22,32 @@ RSpec.describe 'As a USER', type: :feature do
       within "#user_buttons" do
         click_on 'Edit'
       end
+
+      expect(current_path).to eq('/user/profile/edit')
+
+      within "#user_edit_form" do
+        expect(find_field(:name).value).to eq('Steve')
+        expect(find_field(:city).value).to eq('City Name')
+        expect(find_field(:email).value).to eq('example@example.com')
+      end
+    end
+
+    it 'can edit information from edit form' do
+      within "#user_buttons" do
+        click_on 'Edit'
+      end
+
+      within "#user_edit_form" do
+        fill_in :name, with: 'Penelope'
+        fill_in :email, with: 'anotheremail@email.com'
+        fill_in :city, with: 'Not City Name'
+
+        click_on 'Submit'
+      end
+
+      expect(current_path).to eq('/user/profile')
+      expect(page).to have_content('Name: Penelope')
+      expect(page).to have_content('Profile information updated successfully!')
     end
   end
 end

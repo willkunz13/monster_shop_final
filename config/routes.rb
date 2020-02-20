@@ -45,6 +45,9 @@ Rails.application.routes.draw do
   # get '/profile', to: 'users#show'
 
   namespace :user do
+    # resources :profile, only: [:show, :edit, :update]
+    get '/profile/edit', to: 'profile#edit'
+    patch '/profile', to: 'profile#update'
     get '/profile', to: 'profile#show'
   end
 
