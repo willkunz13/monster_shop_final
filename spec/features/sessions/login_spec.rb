@@ -51,7 +51,7 @@ describe 'As a User' do
 
       visit '/login'
 
-      expect(page).to have_content("You are already logged in, to log out please select 'Log Out' at the top of your page.")
+      expect(page).to have_content("You are already logged in as User, to log out please select 'Log Out' at the top of your page.")
     end
 
     it 'If I enter the wrong infromation then I am redirected back to the form with a error message' do
