@@ -18,7 +18,7 @@ RSpec.describe 'As a visitor' do
     it 'can see all of my information' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
 
-      visit '/profile'
+      visit '/user/profile'
 
       within '#user_profile_info' do
         expect(page).to have_content('Name: Steve')
