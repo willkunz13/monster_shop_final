@@ -146,10 +146,12 @@ RSpec.describe "Items Index Page" do
 
     visit '/items'
 
-    expect(page).to have_content("Top 5 Most Popular Items: #{@tire.name}: 11, #{@seat.name}: 10, #{@pump.name}: 9,#{@pedals.name}: 8, #{@helmet.name}: 7")
-
-    expect(page).to have_content("Bottom 5 Least Popular Items: #{@bed.name}: 5, #{@carrier.name}: 4, #{@dog_food.name}: 3, #{@collar.name}: 2, #{@brush.name}: 1")
-
+    within("#popular_items") do
+      expect(page).to have_content("Gatorskins: 11 Seat: 10 Pump: 9 Pedals: 8 Helmet: 7")
+    end
+    within("#not_popular") do
+      expect(page).to have_content("Dog Brush: 1 Dog Collar: 2 Bag o Food: 3 Carrier: 4 Doggie Bed: 5")
+    end
   end
 end
 end

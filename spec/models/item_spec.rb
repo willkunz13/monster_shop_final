@@ -40,6 +40,7 @@ describe Item, type: :model do
       expect(@chain.quantity_ordered).to eq(3)
     end
 
+
     it "sorts reviews" do
       top_three = @chain.sorted_reviews(3,:desc)
       bottom_three = @chain.sorted_reviews(3,:asc)
