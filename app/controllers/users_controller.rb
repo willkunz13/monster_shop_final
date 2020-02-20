@@ -1,27 +1,36 @@
-class UsersController<ApplicationController
-
-
-	def new
-	end
+class UsersController < ApplicationController
+  def new; end
 
 	def show
 		@user = User.find(params[:id])
 	end
+  
   def create
-    user = User.new(user_params)
-	if user.save
-      redirect_to "/profile/#{user.id}"
-      flash[:notice] = "You are now registered and logged in"
+    new_user = User.new(user_params)
+
+    if new_user.save
+      redirect_to '/profile'
+      flash[:notice] = 'You have successfully created a user.'
     else
-	flash[:error] = @item.errors.full_messages.to_sentence
-	render :new
-	end
+      flash[:notice] = new_user.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
+  def show; end
 
-private
+  private
 
   def user_params
-    params.permit(:name, :address, :city, :state, :zip, :email, :password, :role)
+    params.permit(
+      :name,
+      :address,
+      :city,
+      :state,
+      :zip,
+      :email,
+      :password,
+      :role
+    )
   end
 end

@@ -42,8 +42,8 @@ describe User, type: :model do
 
 
 
-      expect(user.role).to eq("user")
-      expect(user.user?).to be_truthy
+      expect(user.role).to eq("default")
+      expect(user.default?).to be_truthy
     end
   end
 end
