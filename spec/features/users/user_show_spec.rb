@@ -8,7 +8,7 @@ RSpec.describe 'As a visitor' do
         address: '123 Street Road',
         city: 'City Name',
         state: 'CO',
-        zip: 12345,
+        zip: 12_345,
         email: 'example@example.com',
         password: 'password1',
         role: 0
@@ -23,7 +23,7 @@ RSpec.describe 'As a visitor' do
       within '#user_profile_info' do
         expect(page).to have_content('Name: Steve')
         expect(page).to have_content('Address: 123 Street Road')
-        expect(page).to have_content("City Name CO, #{12345}")
+        expect(page).to have_content('City Name CO, 12345')
         expect(page).to have_content('Email: example@example.com')
       end
 
