@@ -9,7 +9,7 @@ RSpec.describe "Merchant Items Index Page" do
       @shifter = @meg.items.create(name: "Shimano Shifters", description: "It'll always shift!", active?: false, price: 180, image: "https://images-na.ssl-images-amazon.com/images/I/4142WWbN64L._SX466_.jpg", inventory: 2)
     end
 
-    it 'shows me a list of that merchants items' do
+    xit 'shows me a list of that merchants items' do
       visit "merchants/#{@meg.id}/items"
 
       within "#item-#{@tire.id}" do

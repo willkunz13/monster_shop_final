@@ -85,11 +85,11 @@ describe Item, type: :model do
 
     end
 
-    it '.most_poular' do
+    it '.most_popular' do
       expect(Item.most_popular(5)).to eq([@tire, @seat, @pump, @pedals, @helmet])
     end
 
-    it '.least_poular' do
+    it '.least_popular' do
       expect(Item.least_popular(5)).to eq([@brush, @collar, @dog_food, @bed, @carrier])
     end
   end
