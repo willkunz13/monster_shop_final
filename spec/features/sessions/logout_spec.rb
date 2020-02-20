@@ -10,9 +10,9 @@ describe 'As a User' do
 
 		it 'When I click the link I am returned to the welcome page and I am logged out of my session' do
 
-			visit '/profile'
+			visit '/user/profile'
 
-			expect(current_path).to eq("/profile")
+			expect(current_path).to eq("/user/profile")
 			expect(page).to have_link("Log Out")
 
 			click_on 'Log Out'

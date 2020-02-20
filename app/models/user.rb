@@ -5,5 +5,5 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  enum role: ["default", "merchant", "admin"]
+  enum role: ["default", "merchant_employee", "admin"]
 end

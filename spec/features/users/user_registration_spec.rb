@@ -28,7 +28,7 @@ RSpec.describe 'As a visitor' do
         click_on 'Submit'
       end
 
-      expect(current_path).to eq('/profile')
+      expect(current_path).to eq('/user/profile')
       expect(page).to have_content('You have successfully created a user.')
     end
 
