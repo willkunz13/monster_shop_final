@@ -39,6 +39,15 @@ RSpec.describe 'Site Navigation' do
       end
 
     end
+
+	it "I can't access other user's restricted pages" do
+		visit '/admin/dashboard'
+		expect(page).to have_content("The page you were looking for doesn't exist.")
+		visit '/merchant/dashboard'
+		expect(page).to have_content("The page you were looking for doesn't exist.")
+		visit '/user/profile'
+		expect(page).to have_content("The page you were looking for doesn't exist.")	
+	end	
   end
 
 	describe 'As a User' do
@@ -65,6 +74,12 @@ RSpec.describe 'Site Navigation' do
 #			expect(page).to have_content("You have logged out, or whatever")
 #		      expect(current_path).to eq('/')
 		end
+
+		it "I can't access restricted user pages" do	
+			visit '/admin/dashboard'
+			expect(page).to have_content("The page you were looking for doesn't exist.")
+			visit '/merchant/dashboard'
+			expect(page).to have_content("The page you were looking for doesn't exist.")
 	end
 	
 	describe 'As a Merchant Employee' do
@@ -95,6 +110,13 @@ RSpec.describe 'Site Navigation' do
 #                       expect(page).to have_content("You have logged out, or whatever")
 #                     expect(current_path).to eq('/')
                 end
+
+		it "I can't access restricted user pages" do
+				visit '/admin/dashboard'
+			expect(page).to have_content("The page you were looking for doesn't exist.")
+		end
+        end
+
         end
 
 	describe 'As an Admin' do
@@ -129,6 +151,14 @@ RSpec.describe 'Site Navigation' do
 #                       expect(page).to have_content("You have logged out, or whatever")
 #                     expect(current_path).to eq('/')
                 end
+
+		it "can't access /merchant or /cart stuff" do
+			visit '/merchant/dashboard'
+			expect(page).to have_content("The page you were looking for doesn't exist.")
+			visit '/cart'
+			expect(page).to have_content("The page you were looking for doesn't exist.")
+		end
+		
         end
 
 end
