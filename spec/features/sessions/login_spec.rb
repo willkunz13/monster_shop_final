@@ -48,7 +48,7 @@ describe 'As a User' do
 				click_on 'Log In'
 			end
 
-			expect(current_path).to eq("/profile")
+			expect(current_path).to eq("/user/profile")
 
 			visit '/login'
 

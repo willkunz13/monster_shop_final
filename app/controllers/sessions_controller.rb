@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 	def new
     if !session[:user_id].nil?
 		  flash[:notice] = "You are already logged in, to log out please select 'Log Out' at the top of your page."
-			redirect_to "/profile"
+			redirect_to "/user/profile"
 		end
 	end
 
