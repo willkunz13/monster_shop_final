@@ -28,6 +28,16 @@ merchant = User.create(
   state: 'IN',
   zip: 12345,
   email: 'a',
-  password: 'boom',
+  password: '1',
   role: 1
+)
+user = User.create(
+  name: 'person',
+  address: '123 W',
+  city: 'a',
+  state: 'IN',
+  zip: 12345,
+  email: 'b',
+  password: '1',
+  role: 0
 )

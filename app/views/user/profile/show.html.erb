@@ -1,0 +1,13 @@
+<h2>Welcome to your profile</h2>
+
+<section id="user_profile_info">
+  <p>Name: <%= @user.name %></p>
+  <p>Address: <%= @user.address %></p>
+  <p><%= "#{@user.city} #{@user.state}, #{@user.zip}" %></p>
+  <p>Email: <%= @user.email %></p>
+</section>
+
+<section id='user_buttons'>
+  <%= link_to  "Edit", user_profile_edit_path %>
+  <%= link_to  "Change Password", '/user/profile/edit_password' %>
+</section>
