@@ -8,7 +8,7 @@ RSpec.describe 'As a visitor' do
         address: '123 Street Road',
         city: 'City Name',
         state: 'CO',
-        zip: 12_345,
+        zip: 12345,
         email: 'example@example.com',
         password: 'password1',
         role: 0
