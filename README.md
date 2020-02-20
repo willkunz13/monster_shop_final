@@ -17,6 +17,9 @@ Contributers:
   For those who would like to inspect this code more closley and offer suggestions for improvment or give complaments for some
   good code please follow these instructions. 
   
-  At the top of the page click on the `Fork` button. 
+  At the top of the page click on the `Fork` button.
+  
+  <img width="1384" alt="Screen Shot 2020-02-19 at 7 04 32 PM" src="https://user-images.githubusercontent.com/51456013/74894061-1d73c380-534b-11ea-8e30-8e1e5f700c75.png">
+
   
   
