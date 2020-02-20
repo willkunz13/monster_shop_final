@@ -12,7 +12,7 @@ describe 'As a User' do
 
 			visit '/user/profile'
 
-			expect(current_path).to eq("/profile")
+			expect(current_path).to eq("/user/profile")
 			expect(page).to have_link("Log Out")
 
 			click_on 'Log Out'

@@ -114,11 +114,11 @@ RSpec.describe 'Site Navigation' do
       expect(current_path).to eq('/merchant/dashboard')
 
       within 'nav' do
-        click_link 'Logout'
+        click_link 'Log Out'
       end
 
       expect(page).to have_content('You have been successfully logged out!!')
-      expect(current_path).to eq('/')
+      expect(current_path).to eq('/welcome')
     end
 
     it "I can't access restricted user pages" do
@@ -159,7 +159,7 @@ RSpec.describe 'Site Navigation' do
       expect(current_path).to eq('/admin/users')
 
       within 'nav' do
-        click_link 'Logout'
+        click_link 'Log Out'
       end
 
       expect(page).to have_content('You have been successfully logged out!!')
