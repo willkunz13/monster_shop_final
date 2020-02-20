@@ -41,4 +41,12 @@ Rails.application.routes.draw do
 	namespace :user do
 		get "/profile", to: "profile#show"
 	end
+	
+	namespace :merchant do
+		get "/dashboard", to: "dashboard#show"
+	end
+	namespace :admin do
+		get "/dashboard", to: "dashboard#show"
+		get "/users", to: "users#index"
+	end
 end
