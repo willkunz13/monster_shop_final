@@ -32,21 +32,28 @@ describe 'As a User' do
 			expect(page).to have_content("#{@user.name}, has been successfully logged in!")
 		end
 
-		# it 'If I click on the log in button when I am already logged in then I recive a flash message and am sent back to the profile page' do
+		it 'If I click on the log in button when I am already logged in then I recive a flash message and am sent back to the profile page' do
+			visit '/welcome'
 
-		# 	allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+			expect(current_path).to eq('/welcome')
 
-		# 	visit "/profile"
+			click_on "Log In"
 
-		# 	expect(current_path).to eq("/profile")
+			expect(current_path).to eq('/login')
 
-		# 	expect(page).to have_link("Log In")
+			within '#log_in_form' do
+				fill_in :email, with: @user.email
+				fill_in :password, with: @user.password
 
-		# 	click_on "Log In"
+				click_on 'Log In'
+			end
 
-		# 	expect(current_path).to eq("/profile")
-		# 	expect(page).to have_content("You are already logged in as #{@user.name}, to log out please select 'Log Out' at the top of your page.")
-		# end
+			expect(current_path).to eq("/profile")
+
+			visit '/login'
+
+			expect(page).to have_content("You are already logged in, to log out please select 'Log Out' at the top of your page.")
+		end
 
 		it 'If I enter the wrong infromation then I am redirected back to the form with a error message' do
 
@@ -106,23 +113,29 @@ end
 #
 # 			expect(current_path).to eq("/merchant/dashboard")
 # 		end
-#
-# 		it 'If I click on the log in button when I am already logged in then I recive a flash message and am sent back to the profile page' do
-#
-# 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
-#
-# 			visit "merchant/dashboard"
-#
-# 			expect(current_path).to eq("/merchant/dashboard")
-#
-# 			expect(page).to have_link("Log In")
-#
-# 			click_on "Log In"
-#
-# 			expect(current_path).to eq("/merchant/dashboard")
-#
-# 			expect(page).to have_content("You are already logged in as #{@merchant.name}, to log out please select 'Log Out' at the top of your page.")
-# 		end
+
+		# it 'If I click on the log in button when I am already logged in then I recive a flash message and am sent back to the profile page' do
+		# 	visit '/welcome'
+		#
+		# 	expect(current_path).to eq('/welcome')
+		#
+		# 	click_on "Log In"
+		#
+		# 	expect(current_path).to eq('/login')
+		#
+		# 	within '#log_in_form' do
+		# 		fill_in :email, with: @merchant.email
+		# 		fill_in :password, with: @merchant.password
+		#
+		# 		click_on 'Log In'
+		# 	end
+		#
+		# 	expect(current_path).to eq("/merchant_employee/dashboard")
+		#
+		#   visit '/login'
+
+		# 	expect(page).to have_content("You are already logged in, to log out please select 'Log Out' at the top of your page.")
+		# end
 #
 # 		it 'If I enter the wrong infromation then I am redirected back to the form with a error message' do
 #
@@ -184,22 +197,28 @@ end
 # 		end
 #
 # 		it 'If I click on the log in button when I am already logged in then I recive a flash message and am sent back to the profile page' do
+# 			visit '/welcome'
 #
-# 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
-#
-# 			visit "admin/dashboard"
-#
-# 			expect(current_path).to eq("/admin/dashboard")
-#
-# 			expect(page).to have_link("Log In")
+# 			expect(current_path).to eq('/welcome')
 #
 # 			click_on "Log In"
 #
+# 			expect(current_path).to eq('/login')
+#
+# 			within '#log_in_form' do
+# 				fill_in :email, with: @admin.email
+# 				fill_in :password, with: @admin.password
+#
+# 				click_on 'Log In'
+# 			end
+#
 # 			expect(current_path).to eq("/admin/dashboard")
 #
-# 			expect(page).to have_content("You are already logged in as #{@admin.name}, to log out please select 'Log Out' at the top of your page.")
+#       visit '/login'
+
+# 			expect(page).to have_content("You are already logged in, to log out please select 'Log Out' at the top of your page.")
 # 		end
-#
+
 # 		it 'If I enter the wrong infromation then I am redirected back to the form with a error message' do
 #
 # 			visit '/welcome'
