@@ -1,4 +1,4 @@
-# Monster Shop
+<h1 align = center> Monster Shop </h1>
 BE Mod 2 Week 4/5 Group Project
 
 ## Background and Description
