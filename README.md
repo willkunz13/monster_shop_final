@@ -17,6 +17,6 @@ Contributers:
   For those who would like to inspect this code more closley and offer suggestions for improvment or give complaments for some
   good code please follow these instructions. 
   
-  At the top of the page click on the `fork` button. 
+  At the top of the page click on the `Fork` button. 
   
   
