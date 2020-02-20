@@ -9,9 +9,13 @@ class User::ProfileController < User::BaseController
 
   def update
     user = current_user
-    user.update(user_params)
-    flash[:notice] = 'Profile information updated successfully!'
-    redirect_to user_profile_path
+    if user.update(user_params)
+      flash[:notice] = 'Profile information updated successfully!'
+      redirect_to user_profile_path
+    else
+      flash[:notice] = user.errors.full_messages.to_sentence
+      redirect_back(fallback_location: user_profile_path)
+    end
   end
 
   private

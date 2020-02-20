@@ -49,5 +49,22 @@ RSpec.describe 'As a USER', type: :feature do
       expect(page).to have_content('Name: Penelope')
       expect(page).to have_content('Profile information updated successfully!')
     end
+
+    it 'can edit information from edit form' do
+      within "#user_buttons" do
+        click_on 'Edit'
+      end
+
+      within "#user_edit_form" do
+        fill_in :name, with: ''
+        fill_in :email, with: 'anotheremail@email.com'
+        fill_in :city, with: 'Not City Name'
+
+        click_on 'Submit'
+      end
+
+      expect(current_path).to eq('/user/profile/edit')
+      expect(page).to have_content("Name can't be blank")
+    end
   end
 end
