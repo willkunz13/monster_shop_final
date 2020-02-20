@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
 		if user != nil && user.authenticate(params[:password])
 			session[:user_id] = user.id
 			flash[:success] = "#{user.name}, has been successfully logged in!"
-			redirect_to '/profile'
+			redirect_to '/user/profile'
 		else
 			flash.now[:notice] = "Your Log in attempt failed, Wrong email or password"
 			render :new

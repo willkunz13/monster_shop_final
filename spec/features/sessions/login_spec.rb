@@ -28,7 +28,7 @@ describe 'As a User' do
 				click_on "Log In"
 			end
 
-			expect(current_path).to eq("/profile")
+			expect(current_path).to eq("/user/profile")
 			expect(page).to have_content("#{@user.name}, has been successfully logged in!")
 		end
 
