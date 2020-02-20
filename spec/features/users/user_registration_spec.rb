@@ -92,5 +92,66 @@ RSpec.describe 'As a visitor' do
 
       expect(page).to have_content 'Email has already been taken'
     end
+
+	it "can refute bad credentials" do
+		 visit '/merchants'
+
+	      within 'nav' do
+		click_on 'Register'
+	      end
+
+	      expect(current_path).to eq('/register')
+
+	      fill_in :name, with: 'Oscar'
+	      fill_in :address, with: '123 Sesame Street'
+	      fill_in :state, with: 'Ohio'
+	      fill_in :zip, with: '44123'
+	      fill_in :email, with: 'example@pbs.com'
+	      fill_in :password, with: 'bigbird'
+	      fill_in :pass_confirm, with: 'bigbird'
+		within "#register" do
+			click_on "Register"
+		end
+		expect(page).to have_content("blah")
+	end
+	it "can save entries for an already entered email" do
+		 visit '/merchants'
+
+	      within 'nav' do
+		click_on 'Register'
+	      end
+
+	      expect(current_path).to eq('/register')
+
+	      fill_in :name, with: 'Oscar'
+	      fill_in :address, with: '123 Sesame Street'
+		fill_in :city, with: 'New York'
+	      fill_in :state, with: 'Ohio'
+	      fill_in :zip, with: '44123'
+	      fill_in :email, with: 'example@pbs.com'
+	      fill_in :password, with: 'bigbird'
+	      fill_in :pass_confirm, with: 'bigbird'
+		within "#register" do
+			click_on "Register"
+		end
+		 visit '/merchants'
+	      within 'nav' do
+		click_on 'Register'
+	      end
+
+	      fill_in :name, with: 'Oscar'
+	      fill_in :address, with: '123 Sesame Street'
+		fill_in :city, with: 'New York'
+	      fill_in :state, with: 'Ohio'
+	      fill_in :zip, with: '44123'
+	      fill_in :email, with: 'example@pbs.com'
+	      fill_in :password, with: 'bigbird'
+	      fill_in :pass_confirm, with: 'bigbird'
+		within "#register" do
+			click_on 'Register'
+		end
+		expect(page).to have_content ("Oscar")	
+	end
+		
   end
 end
