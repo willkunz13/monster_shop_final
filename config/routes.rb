@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     # resources :profile, only: [:show, :edit, :update]
     get '/profile/edit', to: 'profile#edit'
     patch '/profile', to: 'profile#update'
+    get '/profile/edit_password', to: 'profile#edit_password'
     get '/profile', to: 'profile#show'
   end
 
