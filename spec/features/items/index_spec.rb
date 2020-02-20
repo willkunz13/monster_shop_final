@@ -6,10 +6,19 @@ RSpec.describe "Items Index Page" do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
-      @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      @tire = @meg.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      @seat = @meg.items.create(name: "Seat", description: "Cushy for your tushy.", price: 199, image: "https://www.rei.com/media/product/153242", inventory: 20)
+      @pump = @meg.items.create(name: "Pump", description: "Not just hot air", price: 70, image: "https://www.rei.com/media/product/152974", inventory: 20)
+      @pedals = @meg.items.create(name: "Pedals", description: "Clipless bliss!", price: 210, image: "https://www.rei.com/media/product/130015", inventory: 20)
+      @helmet = @meg.items.create(name: "Helmet", description: "Safety Third!", price: 100, image: "https://www.rei.com/media/product/153004", inventory: 20)
 
       @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
       @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+      @carrier = @brian.items.create(name: "Carrier", description: "Home away from home", price: 70, image: "https://s7d2.scene7.com/is/image/PetSmart/5168894?$sclp-prd-main_large$", inventory: 32)
+      @bed = @brian.items.create(name: "Doggie Bed", description: "Soo plush and comfy!", price: 40, image: "https://s7d2.scene7.com/is/image/PetSmart/5291324", inventory: 32)
+      @dog_food = @brian.items.create(name: "Bag o Food", description: "Nutrition in bulk", price: 54, image: "https://s7d2.scene7.com/is/image/PetSmart/5149892", inventory: 32)
+      @collar = @brian.items.create(name: "Dog Collar", description: "Choker", price: 18, image: "https://s7d2.scene7.com/is/image/PetSmart/5169886", inventory: 32)
+      @brush = @brian.items.create(name: "Dog Brush", description: "Detangle those curls", price: 12, image: "https://s7d2.scene7.com/is/image/PetSmart/5280398", inventory: 32)
     end
 
     it "all items or merchant names are links" do
@@ -61,10 +70,86 @@ RSpec.describe "Items Index Page" do
 
       expect(page).not_to have_link(@dog_bone.name)
       expect(page).not_to have_content(@dog_bone.description)
-      expect(page).not_to have_content("Price: $#{@dog_bone.price}")
       expect(page).not_to have_content("Inactive")
       expect(page).not_to have_content("Inventory: #{@dog_bone.inventory}")
       expect(page).not_to have_css("img[src*='#{@dog_bone.image}']")
-    end
+    # end
   end
+
+  it "should display 5 most and least poular items" do
+
+      11.times do
+        visit "/items/#{@tire.id}"
+        click_on "Add To Cart"
+      end
+
+    10.times do
+      visit "/items/#{@seat.id}"
+      click_on "Add To Cart"
+    end
+
+    9.times do
+      visit "/items/#{@pump.id}"
+      click_on "Add To Cart"
+    end
+
+    8.times do
+      visit "/items/#{@pedals.id}"
+      click_on "Add To Cart"
+    end
+
+    7.times do
+      visit "/items/#{@helmet.id}"
+      click_on "Add To Cart"
+    end
+
+      6.times do
+        visit "/items/#{@pull_toy.id}"
+        click_on "Add To Cart"
+      end
+
+    5.times do
+      visit "/items/#{@bed.id}"
+      click_on "Add To Cart"
+    end
+
+    4.times do
+      visit "/items/#{@carrier.id}"
+      click_on "Add To Cart"
+    end
+
+    3.times do
+      visit "/items/#{@dog_food.id}"
+      click_on "Add To Cart"
+    end
+
+    2.times do
+      visit "/items/#{@collar.id}"
+      click_on "Add To Cart"
+    end
+
+    1.times do
+      visit "/items/#{@brush.id}"
+      click_on "Add To Cart"
+    end
+
+    visit '/cart'
+    click_on 'Checkout'
+
+    fill_in :name, with: "Kid Rock"
+    fill_in :address, with: "123 Hollywood Blvd"
+    fill_in :city, with: "Los Angeles"
+    fill_in :state, with: "CA"
+    fill_in :zip, with: "98765"
+
+    click_on  'Create Order'
+
+    visit '/items'
+
+    expect(page).to have_content("Top 5 Most Popular Items: #{@tire.name}: 11, #{@seat.name}: 10, #{@pump.name}: 9,#{@pedals.name}: 8, #{@helmet.name}: 7")
+
+    expect(page).to have_content("Bottom 5 Least Popular Items: #{@bed.name}: 5, #{@carrier.name}: 4, #{@dog_food.name}: 3, #{@collar.name}: 2, #{@brush.name}: 1")
+
+  end
+end
 end
