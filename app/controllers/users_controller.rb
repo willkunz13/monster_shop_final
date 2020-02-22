@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     if new_user.save
       redirect_to '/user/profile'
+      session[:user_id] = new_user.id
       flash[:notice] = 'You have successfully created a user.'
     else
       flash[:notice] = new_user.errors.full_messages.to_sentence
@@ -26,6 +27,7 @@ class UsersController < ApplicationController
       :zip,
       :email,
       :password,
+      :password_confirmation,
       :role
     )
   end

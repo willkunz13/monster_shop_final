@@ -71,9 +71,8 @@ RSpec.describe 'As a visitor' do
         click_on 'Submit'
       end
 
-      visit '/merchants'
-
       within 'nav' do
+        click_on 'Log Out'
         click_on 'Register'
       end
 
