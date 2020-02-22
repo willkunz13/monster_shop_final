@@ -78,7 +78,6 @@ RSpec.describe 'Cart show' do
 
 	it 'says I need to login in or register' do
 		visit '/cart'
-		save_and_open_page
 		expect(page).to have_content("You need to register or login to checkout")
 		click_link "register"
 		expect(current_path).to eq('/register')
@@ -86,7 +85,31 @@ RSpec.describe 'Cart show' do
 		click_link "log in"
 		expect(current_path).to eq('/login')
 	end
-		
+
+	it 'logged in user can checkout' do
+		user = User.create(name: 'penelope',
+                         address: '123 W',
+                         city: 'a',
+                         state: 'IN',
+                         zip: 12345,
+                         email: 'a',
+                         password: 'boom',
+                         role: 0)
+
+	      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+		visit '/cart'
+		click_link "Checkout"
+		expect(current_path).to eq("/orders/new")
+		fill_in :name, with: 'Oscar'
+		fill_in :address, with: 'O'
+		fill_in :city, with: 'Os'
+		fill_in :state, with: 'car'
+		fill_in :zip, with: '11'
+		click_on "Create Order"
+		expect(current_path).to eq("/user/profile/orders")
+		expect(page).to have_content("Your order was created as is currently pending")
+		save_and_open_page
+	end	
     end
   end
   describe "When I haven't added anything to my cart" do

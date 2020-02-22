@@ -19,7 +19,8 @@ class OrdersController <ApplicationController
           })
       end
       session.delete(:cart)
-      redirect_to "/orders/#{order.id}"
+      flash[:notice] = "Your order was created as is currently pending"
+      redirect_to "/user/profile/orders"
     else
       flash[:notice] = "Please complete address form to create an order."
       render :new
@@ -30,6 +31,6 @@ class OrdersController <ApplicationController
   private
 
   def order_params
-    params.permit(:name, :address, :city, :state, :zip)
+	parmas =  params.permit(:name, :address, :city, :state, :zip).merge(user: current_user)
   end
 end

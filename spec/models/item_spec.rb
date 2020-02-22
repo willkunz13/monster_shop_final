@@ -22,7 +22,19 @@ describe Item, type: :model do
       @bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @chain = @bike_shop.items.create!(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
 
-      @order1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+	@user = User.create(
+        name: 'Steve',
+        address: '123 Street Road',
+        city: 'City Name',
+        state: 'CO',
+        zip: 12345,
+        email: 'example@example.com',
+        password: 'password1',
+        role: 0
+      )
+
+	
+      @order1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user)
       @order1.item_orders.create!(item: @chain, price: @chain.price, quantity: 3)
 
       @review_1 = @chain.reviews.create!(title: "Great place!", content: "They have great bike stuff and I'd recommend them to anyone.", rating: 5)
@@ -60,7 +72,18 @@ describe Item, type: :model do
 
     it 'no orders' do
       expect(@chain.no_orders?).to eq(true)
-      order = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+	user = User.create(
+        name: 'Steve',
+        address: '123 Street Road',
+        city: 'City Name',
+        state: 'CO',
+        zip: 12345,
+        email: 'example@example.com',
+        password: 'password1',
+        role: 0
+      )
+
+      order = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: user)
       order.item_orders.create!(item: @chain, price: @chain.price, quantity: 2)
       expect(@chain.no_orders?).to eq(false)
     end
@@ -84,9 +107,19 @@ describe Item, type: :model do
       @dog_food = @brian.items.create!(name: "Bag o Food", description: "Nutrition in bulk", price: 54, image: "https://s7d2.scene7.com/is/image/PetSmart/5149892", inventory: 32)
       @collar = @brian.items.create!(name: "Dog Collar", description: "Choker", price: 18, image: "https://s7d2.scene7.com/is/image/PetSmart/5169886", inventory: 32)
       @brush = @brian.items.create!(name: "Dog Brush", description: "Detangle those curls", price: 12, image: "https://s7d2.scene7.com/is/image/PetSmart/5280398", inventory: 32)
+	@user = User.create(
+        name: 'Steve',
+        address: '123 Street Road',
+        city: 'City Name',
+        state: 'CO',
+        zip: 12345,
+        email: 'example@example.com',
+        password: 'password1',
+        role: 0
+      )
 
 
-      @order1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      @order1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user)
 
       @order1.item_orders.create!(item: @tire, price: @tire.price, quantity: 11)
       @order1.item_orders.create!(item: @seat, price: @seat.price, quantity: 10)
