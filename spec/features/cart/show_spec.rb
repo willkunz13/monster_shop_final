@@ -71,12 +71,22 @@ RSpec.describe 'Cart show' do
                 within "#cart-item-#{@paper.id}" do
                         click_on "+1"
                         expect(page).to have_content("2")
-			save_and_open_page
                         click_on "-1"
-			save_and_open_page
-                        expect(page).to_not have_content("2")
+                        expect(page).to have_content("1")
                 end
         end 
+
+	it 'says I need to login in or register' do
+		visit '/cart'
+		save_and_open_page
+		expect(page).to have_content("You need to register or login to checkout")
+		click_link "register"
+		expect(current_path).to eq('/register')
+		visit '/cart'
+		click_link "log in"
+		expect(current_path).to eq('/login')
+	end
+		
     end
   end
   describe "When I haven't added anything to my cart" do
