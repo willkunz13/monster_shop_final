@@ -10,7 +10,7 @@ class Order <ApplicationRecord
   end
 
   def item_count
-    item_orders.count
+    items.sum(:quantity)
   end
 
   def items_in_order
