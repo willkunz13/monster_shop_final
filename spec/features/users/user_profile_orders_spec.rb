@@ -85,5 +85,21 @@ RSpec.describe 'As a USER', type: :feature do
         expect(page).to have_content(new_order.grandtotal)
       end
     end
+
+    it 'can click the order number and be taken to an order show page' do
+      visit '/user/profile'
+
+      within '#user_buttons' do
+        click_on 'My Orders'
+      end
+
+      new_order = Order.last
+
+      within "#order-#{new_order.id}" do
+        click_on "#{new_order.id}"
+      end
+
+      expect(current_path).to eq("/user/profile/orders/#{new_order.id}")
+    end
   end
 end

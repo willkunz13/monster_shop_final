@@ -1,5 +1,5 @@
+<h1 align = "center">Order Info</h1>
 <% @orders.each do |order| %>
-  <h1 align = "center">Order Info</h1>
   <center>
   <table>
     <tr id="order_headers">
@@ -12,7 +12,7 @@
     </tr>
 
     <tr id="order-<%= order.id %>">
-      <td><p><%=link_to order.id, "/orders/#{order.id}"%></p></td>
+      <td><p><%=link_to order.id, "/user/profile/orders/#{order.id}"%></p></td>
       <td><p><%= order.created_at.to_date %></p></td>
       <td><p><%= order.updated_at.to_date %></p></td>
       <td><p><%= order.status %></p></td>
