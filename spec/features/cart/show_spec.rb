@@ -55,6 +55,28 @@ RSpec.describe 'Cart show' do
 
         expect(page).to have_content("Total: $124")
       end
+
+	it 'I can increase quantity in cart' do
+		visit '/cart'
+		within "#cart-item-#{@paper.id}" do
+			click_on "+1"
+			expect(page).to have_content("2")
+			click_on "+1"
+			expect(page).to have_content("3")
+		end
+	end		
+
+	it 'I can decrease quantity in cart' do
+                visit '/cart'
+                within "#cart-item-#{@paper.id}" do
+                        click_on "+1"
+                        expect(page).to have_content("2")
+			save_and_open_page
+                        click_on "-1"
+			save_and_open_page
+                        expect(page).to_not have_content("2")
+                end
+        end 
     end
   end
   describe "When I haven't added anything to my cart" do
