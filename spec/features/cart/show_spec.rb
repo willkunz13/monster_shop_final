@@ -108,7 +108,6 @@ RSpec.describe 'Cart show' do
 		click_on "Create Order"
 		expect(current_path).to eq("/user/profile/orders")
 		expect(page).to have_content("Your order was created as is currently pending")
-		save_and_open_page
 	end	
     end
   end
