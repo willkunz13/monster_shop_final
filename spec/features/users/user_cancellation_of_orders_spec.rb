@@ -58,7 +58,15 @@ RSpec.describe 'As a USER', type: :feature do
       new_order = Order.last
 
       visit "/user/profile/orders/#{new_order.id}"
-      
+
+      click_on 'Cancel Order'
+
+      expect(current_path).to eq('/user/profile')
+      expect(page).to have_content('Order Cancelled')
+
+      visit "/user/profile/orders/#{new_order.id}"
+
+      expect(page).to have_content('cancelled')
     end
   end
 end

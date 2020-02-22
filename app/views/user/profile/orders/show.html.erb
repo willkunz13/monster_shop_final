@@ -25,3 +25,7 @@
       <td><p>$ <%= number_with_precision @order.grandtotal, precision: 2 %></p></td>
     </tr>
   </table>
+
+<section id='order_buttons'>
+  <%= button_to  "Cancel Order", "/user/profile/orders/#{@order.id}/cancel", method: :patch %>
+</section>
