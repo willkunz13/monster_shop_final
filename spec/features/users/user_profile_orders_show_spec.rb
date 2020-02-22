@@ -62,7 +62,7 @@ RSpec.describe 'As a USER', type: :feature do
         expect(page).to have_content('Order Date')
         expect(page).to have_content('Last Updated')
         expect(page).to have_content('Order Status')
-        expect(page).to have_content('Items In Order')
+        expect(page).to have_content('Items in Order')
         expect(page).to have_content('Order Grand Total')
       end
     end
