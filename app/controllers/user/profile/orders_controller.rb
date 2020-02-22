@@ -5,6 +5,6 @@ class User::Profile::OrdersController < User::BaseController
 	end
 
 	def show
-    @orders = current_user.orders.find(params[:id])
+    @order = current_user.orders.find(params[:id])
   end
 end

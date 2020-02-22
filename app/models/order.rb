@@ -12,4 +12,8 @@ class Order <ApplicationRecord
   def item_count
     item_orders.count
   end
+
+  def items_in_order
+    items
+  end
 end

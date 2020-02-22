@@ -62,9 +62,18 @@ RSpec.describe 'As a USER', type: :feature do
         expect(page).to have_content('Order Date')
         expect(page).to have_content('Last Updated')
         expect(page).to have_content('Order Status')
-        expect(page).to have_content('Items in Order')
         expect(page).to have_content('Order Grand Total')
       end
+    end
+
+    it 'can see information under each item' do
+      new_order = Order.last
+
+      expect(page).to have_content(new_order.id)
+      expect(page).to have_content('2020-02-22')
+      expect(page).to have_content('2020-02-22')
+      expect(page).to have_content('pending')
+      expect(page).to have_content('$ 142.00')
     end
   end
 end
