@@ -18,7 +18,6 @@ RSpec.describe 'As a USER', type: :feature do
         password: 'password1',
         role: 0
       )
-
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
       visit "/items/#{@paper.id}"
