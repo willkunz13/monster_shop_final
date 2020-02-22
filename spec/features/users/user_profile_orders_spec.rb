@@ -13,18 +13,26 @@ RSpec.describe 'As a USER', type: :feature do
         password: 'password1',
         role: 0
       )
-    end
 
-    it 'I can see a link called MY ORDERS' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
 
       visit '/user/profile'
+    end
 
+    it 'I can see a link called MY ORDERS' do
       within "#user_buttons" do
         click_on 'My Orders'
       end
 
       expect(current_path).to eq('/user/profile/orders')
+    end
+
+    it 'can see orders on profile orders show page' do
+      within "#user_buttons" do
+        click_on 'My Orders'
+      end
+
+      expect(page).to have_content('')
     end
   end
 end
