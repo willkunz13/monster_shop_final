@@ -12,6 +12,9 @@ describe User, type: :model do
 
     it {should validate_uniqueness_of :email}
   end
+	describe "relationships" do
+		it {should have_many :orders}
+	end
 
   describe "roles" do
     it "can be created as an admin" do

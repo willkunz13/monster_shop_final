@@ -55,6 +55,61 @@ RSpec.describe 'Cart show' do
 
         expect(page).to have_content("Total: $124")
       end
+
+	it 'I can increase quantity in cart' do
+		visit '/cart'
+		within "#cart-item-#{@paper.id}" do
+			click_on "+1"
+			expect(page).to have_content("2")
+			click_on "+1"
+			expect(page).to have_content("3")
+		end
+	end		
+
+	it 'I can decrease quantity in cart' do
+                visit '/cart'
+                within "#cart-item-#{@paper.id}" do
+                        click_on "+1"
+                        expect(page).to have_content("2")
+                        click_on "-1"
+                        expect(page).to have_content("1")
+                end
+        end 
+
+	it 'says I need to login in or register' do
+		visit '/cart'
+		expect(page).to have_content("You need to register or login to checkout")
+		click_link "register"
+		expect(current_path).to eq('/register')
+		visit '/cart'
+		click_link "log in"
+		expect(current_path).to eq('/login')
+	end
+
+	it 'logged in user can checkout' do
+		user = User.create(name: 'penelope',
+                         address: '123 W',
+                         city: 'a',
+                         state: 'IN',
+                         zip: 12345,
+                         email: 'a',
+                         password: 'boom',
+                         role: 0)
+
+	      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+		visit '/cart'
+		click_link "Checkout"
+		expect(current_path).to eq("/orders/new")
+		fill_in :name, with: 'Oscar'
+		fill_in :address, with: 'O'
+		fill_in :city, with: 'Os'
+		fill_in :state, with: 'car'
+		fill_in :zip, with: '11'
+		click_on "Create Order"
+		expect(current_path).to eq("/user/profile/orders")
+		expect(page).to have_content("Your order was created as is currently pending")
+		save_and_open_page
+	end	
     end
   end
   describe "When I haven't added anything to my cart" do
