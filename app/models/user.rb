@@ -6,4 +6,14 @@ class User < ApplicationRecord
   has_secure_password
 
   enum role: ["default", "merchant_employee", "admin"]
+
+  after_initialize :set_defaults
+
+  private
+
+  def set_defaults
+    if self.new_record?
+      self.role ||= 'default'
+    end
+  end
 end
