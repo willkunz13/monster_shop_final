@@ -43,15 +43,13 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
-  # get '/profile', to: 'users#show'
 
   namespace :user do
-    # resources :profile, only: [:show, :edit, :update]
     get '/profile/edit', to: 'profile#edit'
     patch '/profile', to: 'profile#update'
     get '/profile/edit_password', to: 'profile#edit_password'
     get '/profile', to: 'profile#show'
-	get '/profile/orders', to: 'profile/orders#index'
+	  get '/profile/orders', to: 'profile/orders#index'
   end
 
   namespace :merchant do
