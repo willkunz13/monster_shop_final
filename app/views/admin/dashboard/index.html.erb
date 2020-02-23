@@ -7,5 +7,9 @@
     <p>Order ID: <%= order.id %></p>
     <p>Order Date: <%= order.created_at.to_date %></p>
     <p>Status: <%= order.status %></p>
+
+    <% if order.packaged? %>
+      <%= button_to  "Ship Package", "/admin/users/#{order.user.id}/orders/#{order.id}/ship", method: :patch %>
+    <% end %>
   </section>
 <% end %>

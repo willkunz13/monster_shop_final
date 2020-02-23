@@ -30,6 +30,10 @@ class Order <ApplicationRecord
     order(status: :ASC)
   end
 
+  def packaged?
+    true unless self.status != 'packaged'
+  end
+
   # def package_fulfilled
   #   update(status: 'packaged') if item_orders.distinct.pluck(:status) == 'fulfilled'
   # end

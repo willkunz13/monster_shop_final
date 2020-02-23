@@ -54,9 +54,9 @@ RSpec.describe 'As an ADMIN', type: :feature do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
-      @order_1 = @user1.orders.create!(name: @user1.name, address: 'address', city: 'city', state: 'state', zip: 12345, status: 'cancelled')
-      @order_2 = @user2.orders.create!(name: @user2.name, address: 'address', city: 'city', state: 'state', zip: 12345, status: 'packaged')
-      @order_3 = @user3.orders.create!(name: @user3.name, address: 'address', city: 'city', state: 'state', zip: 12345, status: 'pending')
+      @order_1 = @user1.orders.create!(name: @user1.name, address: 'address', city: 'city', state: 'state', zip: 12345, status: 'packaged')
+      @order_2 = @user2.orders.create!(name: @user2.name, address: 'address', city: 'city', state: 'state', zip: 12345, status: 'pending')
+      @order_3 = @user3.orders.create!(name: @user3.name, address: 'address', city: 'city', state: 'state', zip: 12345, status: 'cancelled')
     end
 
     it 'I can see all orders in the system' do
@@ -66,6 +66,7 @@ RSpec.describe 'As an ADMIN', type: :feature do
         expect(page).to have_link('Steve')
         expect(page).to have_content(@order_1.id)
         expect(page).to have_content(@order_1.created_at.to_date)
+        expect(page).to have_button("Ship Package")
       end
 
       within "#order-#{@order_2.id}" do
@@ -80,7 +81,11 @@ RSpec.describe 'As an ADMIN', type: :feature do
         expect(page).to have_content(@order_3.created_at.to_date)
       end
 
-      save_and_open_page
+      within "#order-#{@order_1.id}" do
+        click_on "Ship Package"
+      end
+
+      expect(current_path).to eq("/admin/dashboard")
     end
   end
 end
