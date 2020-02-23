@@ -42,7 +42,7 @@ RSpec.describe 'Site Navigation' do
       visit '/admin/dashboard'
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
-      visit '/merchant/dashboard'
+      visit '/merchant_employee/dashboard'
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
       visit '/user/profile'
@@ -82,14 +82,15 @@ RSpec.describe 'Site Navigation' do
       visit '/admin/dashboard'
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
-      visit '/merchant/dashboard'
+      visit '/merchant_employee/dashboard'
       expect(page).to have_content("The page you were looking for doesn't exist.")
     end
   end
 
   describe 'As a Merchant Employee' do
     it 'I see normal nav stuff and link to merchant dashboard' do
-      merchant = User.create(name: 'penelope',
+			@meg = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @merchant_employee = @meg.users.create(name: 'penelope',
                              address: '123 W',
                              city: 'a',
                              state: 'IN',
@@ -98,7 +99,7 @@ RSpec.describe 'Site Navigation' do
                              password: 'boom',
                              role: 1)
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
       visit '/merchants'
 
       within 'nav' do
@@ -108,10 +109,10 @@ RSpec.describe 'Site Navigation' do
       expect(current_path).to eq('/user/profile')
 
       within 'nav' do
-        click_link 'Merchant Dashboard'
+        click_link 'Merchant Employee Dashboard'
       end
 
-      expect(current_path).to eq('/merchant/dashboard')
+      expect(current_path).to eq('/merchant_employee/dashboard')
 
       within 'nav' do
         click_link 'Log Out'
@@ -178,7 +179,7 @@ RSpec.describe 'Site Navigation' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-      visit '/merchant/dashboard'
+      visit '/merchant_employee/dashboard'
       expect(page).to have_content("The page you were looking for doesn't exist.")
 
       visit '/cart'
