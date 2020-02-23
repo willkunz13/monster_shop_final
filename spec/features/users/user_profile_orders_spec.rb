@@ -80,7 +80,7 @@ RSpec.describe 'As a USER', type: :feature do
         expect(page).to have_content(new_order.created_at.to_date)
         expect(page).to have_content(new_order.updated_at.to_date)
         expect(page).to have_content(new_order.status)
-        expect(page).to have_content(new_order.items.count)
+        expect(page).to have_content('4')
         expect(page).to have_content(new_order.grandtotal)
       end
     end

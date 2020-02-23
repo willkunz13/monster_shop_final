@@ -54,30 +54,19 @@ RSpec.describe 'As a USER', type: :feature do
       end
     end
 
-    it 'can see individual orders on profile orders show page' do
+    it 'can see a cancel button on show page' do
       new_order = Order.last
 
       visit "/user/profile/orders/#{new_order.id}"
 
-      within '#order_headers' do
-        expect(page).to have_content('Order ID')
-        expect(page).to have_content('Order Date')
-        expect(page).to have_content('Last Updated')
-        expect(page).to have_content('Order Status')
-        expect(page).to have_content('Order Grand Total')
-      end
-    end
+      click_on 'Cancel Order'
 
-    it 'can see information under each item' do
-      new_order = Order.last
+      expect(current_path).to eq('/user/profile')
+      expect(page).to have_content('Order Cancelled')
 
       visit "/user/profile/orders/#{new_order.id}"
 
-      expect(page).to have_content(new_order.id)
-      expect(page).to have_content('2020-02-22')
-      expect(page).to have_content('2020-02-22')
-      expect(page).to have_content('pending')
-      expect(page).to have_content('$ 142.00')
+      expect(page).to have_content('cancelled')
     end
   end
 end

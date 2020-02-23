@@ -10,10 +10,19 @@ class Order <ApplicationRecord
   end
 
   def item_count
-    item_orders.count
+    items.sum(:quantity)
   end
 
   def items_in_order
     items
+  end
+
+  def cancel
+    update(status: 'cancelled')
+
+    item_orders.each do |order|
+      order.update(status: 'unfulfilled')
+      order.item.update(inventory: (order.item.inventory + order.quantity))
+    end
   end
 end
