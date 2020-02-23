@@ -74,8 +74,8 @@ RSpec.describe 'As a USER', type: :feature do
       visit "/user/profile/orders/#{new_order.id}"
 
       expect(page).to have_content(new_order.id)
-      expect(page).to have_content('2020-02-22')
-      expect(page).to have_content('2020-02-22')
+      expect(page).to have_content(new_order.created_at.to_date)
+      expect(page).to have_content(new_order.updated_at.to_date)
       expect(page).to have_content('pending')
       expect(page).to have_content('$ 142.00')
     end

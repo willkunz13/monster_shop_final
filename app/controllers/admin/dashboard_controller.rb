@@ -1,3 +1,5 @@
 class Admin::DashboardController < Admin::BaseController
-  def show; end
+  def index
+    @orders = Order.sort_status
+  end
 end

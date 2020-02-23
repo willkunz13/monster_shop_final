@@ -25,4 +25,12 @@ class Order <ApplicationRecord
       order.item.update(inventory: (order.item.inventory + order.quantity))
     end
   end
+
+  def self.sort_status
+    order(status: :ASC)
+  end
+
+  # def package_fulfilled
+  #   update(status: 'packaged') if item_orders.distinct.pluck(:status) == 'fulfilled'
+  # end
 end

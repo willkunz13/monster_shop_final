@@ -1,0 +1,11 @@
+<h2>Admin Dashboard</h2>
+
+<h3>Orders</h3>
+<% @orders.each do |order| %>
+  <section id="order-<%= "#{order.id}"%>">
+    <p>Name: <%= link_to order.user.name, "/admin/users/#{order.user.id}" %></p>
+    <p>Order ID: <%= order.id %></p>
+    <p>Order Date: <%= order.created_at.to_date %></p>
+    <p>Status: <%= order.status %></p>
+  </section>
+<% end %>
