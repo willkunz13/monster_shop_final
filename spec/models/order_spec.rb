@@ -42,5 +42,13 @@ describe Order, type: :model do
     it 'grandtotal' do
       expect(@order_1.grandtotal).to eq(230)
     end
+
+		it '.merchant_quantity' do
+			expect(@order_1.merchant_quantity(@meg.id)).to eq(2)
+		end
+
+		it '.merchant_total' do
+			expect(@order_1.merchant_total(@meg.id)).to eq(200)
+		end
   end
 end

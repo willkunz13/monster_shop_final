@@ -37,4 +37,12 @@ class Order < ApplicationRecord
   # def package_fulfilled
   #   update(status: 'packaged') if item_orders.distinct.pluck(:status) == 'fulfilled'
   # end
+
+	def merchant_total(merchant_id)
+		item_orders.joins("JOIN items ON item_orders.item_id = items.id").where("items.merchant_id = #{merchant_id}").sum('item_orders.price * item_orders.quantity')
+	end
+
+	def merchant_quantity(merchant_id)
+		item_orders.joins("JOIN items ON item_orders.item_id = items.id").where("items.merchant_id = #{merchant_id}").sum('item_orders.quantity')
+	end
 end

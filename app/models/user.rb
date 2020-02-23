@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
 	has_many :orders
   has_secure_password
+	belongs_to :merchant, optional: true  
 
   enum role: ["default", "merchant_employee", "admin"]
 

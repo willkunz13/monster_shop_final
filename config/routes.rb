@@ -62,15 +62,17 @@ Rails.application.routes.draw do
     patch '/profile/orders/:id/cancel', to: 'profile/orders#cancel'
   end
 
-	# Merchant
-  namespace :merchant do
+	# Merchant Employee 
+  namespace :merchant_employee do
     get '/dashboard', to: 'dashboard#show'
   end
 
-	# Admin 
+	# Admin
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
     get '/users', to: 'users#index'
+		get '/merchants', to: 'merchants#index'
+		get '/merchants/:merchant_id', to: 'merchants#show'
     patch '/users/:id/orders/:id/ship', to: 'orders#ship'
   end
 end
