@@ -8,7 +8,6 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def ship
-    # require 'pry'; binding.pry
     order = Order.find(params[:id])
     order.update(status: 'shipped')
     redirect_to admin_dashboard_path
