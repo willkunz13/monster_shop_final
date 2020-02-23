@@ -26,7 +26,6 @@ describe Merchant, type: :model do
 			@order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
 			@order_2.item_orders.create!(item: @chain, price: @chain.price, quantity: 2)
 			@order_3.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
-			@item_order_1 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
     end
 
     it '.no_orders' do
