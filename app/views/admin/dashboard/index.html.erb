@@ -1,0 +1,7 @@
+<h2>Admin Dashboard</h2>
+
+<h3>Orders</h3>
+<% @orders.each do |order| %>
+  <section id="order-<%= "#{order.id}"%>">
+  </section>
+<% end %>
