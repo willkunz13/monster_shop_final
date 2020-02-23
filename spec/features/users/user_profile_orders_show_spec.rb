@@ -18,6 +18,7 @@ RSpec.describe 'As a USER', type: :feature do
         password: 'password1',
         role: 0
       )
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
       visit "/items/#{@paper.id}"
@@ -45,25 +46,15 @@ RSpec.describe 'As a USER', type: :feature do
       fill_in :zip, with: zip
 
       click_button 'Create Order'
-    end
 
-    it 'I can see a link called MY ORDERS' do
       visit '/user/profile'
 
       within '#user_buttons' do
         click_on 'My Orders'
       end
-
-      expect(current_path).to eq('/user/profile/orders')
     end
 
-    it 'can see index of orders from profile page' do
-      visit '/user/profile'
-
-      within '#user_buttons' do
-        click_on 'My Orders'
-      end
-
+    it 'can see individual orders on profile orders show page' do
       new_order = Order.last
 
       within '#order_headers' do
@@ -71,34 +62,18 @@ RSpec.describe 'As a USER', type: :feature do
         expect(page).to have_content('Order Date')
         expect(page).to have_content('Last Updated')
         expect(page).to have_content('Order Status')
-        expect(page).to have_content('Items In Order')
         expect(page).to have_content('Order Grand Total')
-      end
-
-      within "#order-#{new_order.id}" do
-        expect(page).to have_link(new_order.id)
-        expect(page).to have_content(new_order.created_at.to_date)
-        expect(page).to have_content(new_order.updated_at.to_date)
-        expect(page).to have_content(new_order.status)
-        expect(page).to have_content(new_order.items.count)
-        expect(page).to have_content(new_order.grandtotal)
       end
     end
 
-    it 'can click the order number and be taken to an order show page' do
-      visit '/user/profile'
-
-      within '#user_buttons' do
-        click_on 'My Orders'
-      end
-
+    it 'can see information under each item' do
       new_order = Order.last
 
-      within "#order-#{new_order.id}" do
-        click_on "#{new_order.id}"
-      end
-
-      expect(current_path).to eq("/user/profile/orders/#{new_order.id}")
+      expect(page).to have_content(new_order.id)
+      expect(page).to have_content('2020-02-22')
+      expect(page).to have_content('2020-02-22')
+      expect(page).to have_content('pending')
+      expect(page).to have_content('$ 142.00')
     end
   end
 end

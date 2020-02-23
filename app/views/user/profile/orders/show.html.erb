@@ -1,0 +1,27 @@
+<h1 align = "center">Order Info</h1>
+
+<center>
+  <table>
+    <tr id="order_headers">
+      <th>Order ID</th>
+      <th>Order Date</th>
+      <th>Last Updated</th>
+      <th>Order Status</th>
+      <th>Items in Order</th>
+      <th>Number of Items</th>
+      <th>Order Grand Total</th>
+    </tr>
+
+    <tr id="order_info">
+      <td><p><%= @order.id%></p></td>
+      <td><p><%= @order.created_at.to_date %></p></td>
+      <td><p><%= @order.updated_at.to_date %></p></td>
+      <td><p><%= @order.status %></p></td>
+      <td><p><% @order.items_in_order.each do |item| %>
+                  <p><%= item.name %></p>
+                <% end %>
+      </p></td>
+      <td><p><%= @order.item_count %></p></td>
+      <td><p>$ <%= number_with_precision @order.grandtotal, precision: 2 %></p></td>
+    </tr>
+  </table>
