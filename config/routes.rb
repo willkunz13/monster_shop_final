@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     patch '/profile/orders/:id/cancel', to: 'profile/orders#cancel'
   end
 
-  namespace :merchant do
+  namespace :merchant_employee do
     get '/dashboard', to: 'dashboard#show'
   end
 

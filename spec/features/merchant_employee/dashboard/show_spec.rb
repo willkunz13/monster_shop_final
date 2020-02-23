@@ -10,9 +10,9 @@ RSpec.describe 'As a Merchant Employee' do
 
 		it 'Where I see the name and address of my Employer' do
 
-			visit '/merchant/dashboard'
+			visit '/merchant_employee/dashboard'
 
-			expect(current_path).to eq("/merchant/dashboard")
+			expect(current_path).to eq("/merchant_employee/dashboard")
 
 			within "#employer" do
 				expect(page).to have_content(@dog_shop.name)
