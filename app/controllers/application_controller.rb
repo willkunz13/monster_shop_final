@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # before_action :current_user
+
   protect_from_forgery with: :exception
 
   helper_method :cart, :current_user, :current_admin?, :current_merchant?, :current_default?

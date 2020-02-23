@@ -1,3 +1,5 @@
 class Merchant::DashboardController< Merchant::BaseController
-  def show; end
+	
+  def show
+	end
 end

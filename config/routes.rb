@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+	# Welcome Page
   get '/', to: 'welcome#show'
   get '/welcome', to: 'welcome#show'
+
+	# User Session
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+	# Merchants
   get '/merchants', to: 'merchants#index'
   get '/merchants/new', to: 'merchants#new'
   get '/merchants/:id', to: 'merchants#show'
@@ -15,6 +18,7 @@ Rails.application.routes.draw do
   patch '/merchants/:id', to: 'merchants#update'
   delete '/merchants/:id', to: 'merchants#destroy'
 
+	# Items
   get '/items', to: 'items#index'
   get '/items/:id', to: 'items#show'
   get '/items/:id/edit', to: 'items#edit'
@@ -24,26 +28,30 @@ Rails.application.routes.draw do
   post '/merchants/:merchant_id/items', to: 'items#create'
   delete '/items/:id', to: 'items#destroy'
 
+	# Reviews
   get '/items/:item_id/reviews/new', to: 'reviews#new'
   post '/items/:item_id/reviews', to: 'reviews#create'
-
   get '/reviews/:id/edit', to: 'reviews#edit'
   patch '/reviews/:id', to: 'reviews#update'
   delete '/reviews/:id', to: 'reviews#destroy'
 
+	# Cart
   post '/cart/:item_id', to: 'cart#add_item'
   get '/cart', to: 'cart#show'
   delete '/cart', to: 'cart#empty'
   delete '/cart/:item_id', to: 'cart#remove_item'
 	patch '/cart/:item_id/:increment_decrement', to: 'cart#increment_decrement'
 
+	# Orders
   get '/orders/new', to: 'orders#new'
   post '/orders', to: 'orders#create'
   get '/orders/:id', to: 'orders#show'
 
+	# Registration
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
 
+	# User
   namespace :user do
     get '/profile/edit', to: 'profile#edit'
     patch '/profile', to: 'profile#update'
@@ -54,10 +62,12 @@ Rails.application.routes.draw do
     patch '/profile/orders/:id/cancel', to: 'profile/orders#cancel'
   end
 
+	# Merchant
   namespace :merchant do
     get '/dashboard', to: 'dashboard#show'
   end
 
+	# Admin 
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
     get '/users', to: 'users#index'
