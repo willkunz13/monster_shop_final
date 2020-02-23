@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe User, type: :model do
-  describe 'validations' do
+RSpec.describe User, type: :model do
+  describe 'Validations' do
     it {should validate_presence_of :name}
     it {should validate_presence_of :address}
     it {should validate_presence_of :city}
@@ -12,39 +12,23 @@ describe User, type: :model do
 
     it {should validate_uniqueness_of :email}
   end
-	describe "relationships" do
+
+	describe "Relationships" do
 		it {should have_many :orders}
 		it {should belong_to(:merchant).optional}
 	end
 
-  describe "roles" do
+  describe "Roles" do
+
     it "can be created as an admin" do
-      user = User.create(name: "penelope",
-                          address: "123 W",
-                          city: "a",
-                          state: "IN",
-                          zip: 12345,
-                          email: "a",
-                         password: "boom",
+			admin = User.create(name: 'Steve', address: '123 Street Road', city: 'City Name', state: 'CO', zip: 12345, email: 'example@example.com', password: 'password1', role: 2)
 
-                         role: 2)
-
-      expect(user.role).to eq("admin")
-      expect(user.admin?).to be_truthy
+      expect(admin.role).to eq("admin")
+      expect(admin.admin?).to be_truthy
     end
 
     it "can be created as a default user" do
-      user = User.create(name: "penelope",
-                          address: "123 W",
-                          city: "a",
-                          state: "IN",
-                          zip: 12345,
-                          email: "a",
-                         password: "boom",
-
-                         role: 0)
-
-
+			user = User.create(name: 'Steve', address: '123 Street Road', city: 'City Name', state: 'CO', zip: 12345, email: 'example@example.com', password: 'password1', role: 0)
 
       expect(user.role).to eq("default")
       expect(user.default?).to be_truthy

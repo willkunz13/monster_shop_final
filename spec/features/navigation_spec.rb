@@ -52,14 +52,7 @@ RSpec.describe 'Site Navigation' do
 
   describe 'As a User' do
     it 'I see profile and log out' do
-      user = User.create(name: 'penelope',
-                         address: '123 W',
-                         city: 'a',
-                         state: 'IN',
-                         zip: 12345,
-                         email: 'a',
-                         password: 'boom',
-                         role: 0)
+      user = User.create(name: 'penelope', address: '123 W', city: 'a', state: 'IN', zip: 12345, email: 'a', password: 'boom', role: 0)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -89,17 +82,10 @@ RSpec.describe 'Site Navigation' do
 
   describe 'As a Merchant Employee' do
     it 'I see normal nav stuff and link to merchant dashboard' do
-			@meg = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-      @merchant_employee = @meg.users.create(name: 'penelope',
-                             address: '123 W',
-                             city: 'a',
-                             state: 'IN',
-                             zip: 12345,
-                             email: 'a',
-                             password: 'boom',
-                             role: 1)
+			meg = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      merchant_employee = meg.users.create(name: 'penelope', address: '123 W', city: 'a', state: 'IN', zip: 12345, email: 'a', password: 'boom', role: 1)
 
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_employee)
       visit '/merchants'
 
       within 'nav' do
@@ -130,14 +116,8 @@ RSpec.describe 'Site Navigation' do
 
   describe 'As an Admin' do
     it 'I see normal nav stuff and link to admin dashboard and all users' do
-      admin = User.create(name: 'penelope',
-                          address: '123 W',
-                          city: 'a',
-                          state: 'IN',
-                          zip: 12345,
-                          email: 'a',
-                          password: 'boom',
-                          role: 2)
+      admin = User.create(name: 'penelope', address: '123 W', city: 'a', state: 'IN', zip: 12345, email: 'a', password: 'boom', role: 2)
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit '/merchants'
@@ -168,14 +148,7 @@ RSpec.describe 'Site Navigation' do
     end
 
     it "can't access /merchant or /cart stuff" do
-      admin = User.create(name: 'penelope',
-        address: '123 W',
-        city: 'a',
-        state: 'IN',
-        zip: 12345,
-        email: 'a',
-        password: 'boom',
-        role: 2)
+      admin = User.create(name: 'penelope', address: '123 W', city: 'a', state: 'IN', zip: 12345, email: 'a', password: 'boom', role: 2)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
