@@ -26,16 +26,17 @@ end
 describe 'As a Merchant' do
 	describe 'I see a link in my nav bar called logout' do
 		before :each do
-			@merchant = User.create!(name: "Merchant", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "merchant@gmail.com", password: "merchant", role: 1)
+			@meg = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+			@merchant = @meg.users.create!(name: "Merchant", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "merchant@gmail.com", password: "merchant", role: 1)
 
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
 		end
 
 		it 'When I click the link I am returned to the welcome page and I am logged out of my session' do
 
-			visit '/merchant/dashboard'
+			visit '/merchant_employee/dashboard'
 
-			expect(current_path).to eq("/merchant/dashboard")
+			expect(current_path).to eq("/merchant_employee/dashboard")
 			expect(page).to have_link("Log Out")
 
 			click_on 'Log Out'

@@ -5,3 +5,16 @@
 	<%= @merchant.state %>
 	<%= @merchant.zip %></p>
 </section>
+
+<h4> Orders </h4>
+
+<section class='orders'>
+<% @merchant.pending_orders.each do |order| %>
+	<section id='order-<%= order.id %>'>
+		<%= link_to order.id, "/merchant/orders/#{order.id}" %>
+		<p>Date Order Created: <%= order.created_at %></p>
+		<p>Total Quantitiy of Items: <%= merchant_quantity(@merchant.id) %></p>
+		<p>Total Amount to be Charged: <%= merchant_total(@merchant.id) %></p>
+	</section>
+<% end %>
+</section>

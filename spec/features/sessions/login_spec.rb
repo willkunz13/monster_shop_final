@@ -84,7 +84,8 @@ end
 describe 'As a Merchant' do
   describe 'When I go to the welcome page I see a link to log in' do
     before :each do
-      @merchant = User.create!(name: "Merchant", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "merchant@gmail.com", password: "merchant", role: 1)
+			@meg = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @merchant = @meg.users.create!(name: "Merchant", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "merchant@gmail.com", password: "merchant", role: 1)
     end
 
     it 'when I click that link I am taken to a log in form to log in' do
@@ -109,7 +110,7 @@ describe 'As a Merchant' do
         click_on "Log In"
       end
 
-      expect(current_path).to eq("/merchant/dashboard")
+      expect(current_path).to eq("/merchant_employee/dashboard")
     end
 
 it 'If I click on the log in button when I am already logged in then I recive a flash message and am sent back to the profile page' do
@@ -128,7 +129,7 @@ it 'If I click on the log in button when I am already logged in then I recive a 
     click_on 'Log In'
   end
 
-  expect(current_path).to eq("/merchant/dashboard")
+  expect(current_path).to eq("/merchant_employee/dashboard")
 
   visit '/login'
 
