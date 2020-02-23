@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'json'
 gem 'bcrypt'
+gem 'yarn'
+gem 'selenium-webdriver'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

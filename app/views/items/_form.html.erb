@@ -1,0 +1,19 @@
+<%= form_tag path, method: method do %>
+
+	<p><%= label_tag :name %>
+	<%= text_field_tag :name, name%></p>
+
+	<p><%= label_tag :description %>
+	<%= text_field_tag :description, description %></p>
+
+	<p><%= label_tag :price %>
+	<%= text_field_tag :price, price %></p>
+
+	<p><%= label_tag :image %>
+	<%= text_field_tag :image, image %></p>
+
+	<p><%= label_tag :inventory %>
+	<%= text_field_tag :inventory, inventory %></p>
+
+	<%= submit_tag 'Create Item' %>
+<% end %> 
