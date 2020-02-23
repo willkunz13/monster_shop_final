@@ -41,3 +41,14 @@ user = User.create(
   password: '1',
   role: 0
 )
+
+admin = User.create(
+  name: 'Kevin',
+  address: '123 Street Road',
+  city: 'City Name',
+  state: 'CO',
+  zip: 12345,
+  email: 'admin@example.com',
+  password: 'password1',
+  role: 2
+)
