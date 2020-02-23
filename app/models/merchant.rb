@@ -27,7 +27,6 @@ class Merchant < ApplicationRecord
   end
 
 	def pending_orders
-		orders.where(status: 'pending')
+		orders.where(status: 'pending').distinct 
 	end
-
 end

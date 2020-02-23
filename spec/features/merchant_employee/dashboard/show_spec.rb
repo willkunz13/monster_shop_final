@@ -53,18 +53,18 @@ RSpec.describe 'As a Merchant Employee' do
 		it 'If any users have pending orders containing items I sell Then I see a list of these orders.' do
 
 			within "#order-#{@order_1.id}" do
-				expect_page.to have_link(@order_1.id)
-				expect_page.to have_content(@order_1.created_at)
-				expect_page.to have_content("Total Quantitiy of Items: #{@order_1.merchant_quantity(@megs_shop.id)}")
-				expect_page.to have_content("Total Amount to be Charged: #{@order_1.merchant_total(@megs_shop.id)}")
+				expect(page).to have_link(@order_1.id)
+				expect(page).to have_content(@order_1.created_at)
+				expect(page).to have_content("Total Quantitiy of Items: #{@order_1.merchant_quantity(@megs_shop.id)}")
+				expect(page).to have_content("Total Amount to be Charged: $#{@order_1.merchant_total(@megs_shop.id)}")
 			end
 		end
 
 		it 'If any users have pending orders containing items I sell I Do Not see the items of the other Merchants on this order.' do
 
 			within "#order-#{@order_1.id}" do
-				expect_page.not_to have_content("Total Quantitiy of Items: #{@order_1.merchant_quantity(@brians_shop.id.id)}")
-				expect_page.not_to have_content("Total Amount to be Charged: #{@order_1.merchant_total(@brians_shop.id.id)}")
+				expect(page).not_to have_content("Total Quantitiy of Items: #{@order_1.merchant_quantity(@brians_shop.id)}")
+				expect(page).not_to have_content("Total Amount to be Charged: $#{@order_1.merchant_total(@brians_shop.id)}")
 			end
 		end
 	end

@@ -13,8 +13,8 @@
 	<section id='order-<%= order.id %>'>
 		<%= link_to order.id, "/merchant/orders/#{order.id}" %>
 		<p>Date Order Created: <%= order.created_at %></p>
-		<p>Total Quantitiy of Items: <%= merchant_quantity(@merchant.id) %></p>
-		<p>Total Amount to be Charged: <%= merchant_total(@merchant.id) %></p>
+		<p>Total Quantitiy of Items: <%= order.merchant_quantity(@merchant.id) %></p>
+		<p>Total Amount to be Charged: $<%= order.merchant_total(@merchant.id) %></p>
 	</section>
 <% end %>
 </section>
