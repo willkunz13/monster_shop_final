@@ -46,7 +46,6 @@ RSpec.describe "As a visitor" do
       )
        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-
       visit "/items/#{paper.id}"
       click_on "Add To Cart"
       visit "/items/#{paper.id}"
