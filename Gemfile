@@ -14,6 +14,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
+gem 'yarn'
+gem 'selenium-webdriver'
+gem 'bootstrap-sass'
 
 
 group :development, :test do
@@ -24,15 +27,11 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov'
   gem 'shoulda-matchers'
-	gem 'json'
-	gem 'faker'
-	gem 'database_cleaner'
 end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-	gem 'faker'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
