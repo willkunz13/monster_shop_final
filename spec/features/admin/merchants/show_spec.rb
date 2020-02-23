@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'As an Admin' do
-	desribe 'When I visit a merchants show page' do
+	describe 'When I visit a merchants show page' do
 		before :each do
+			@admin = User.create!(name: "Admin", address: "123 Admin cir.", city: "The provinance of holeville", state: "Ca", zip: "83845", email: "admin@gmail.com", password: "admin", role: 2)
 			@megs_shop = Merchant.create(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
 			@brians_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 			@meg = @megs_shop.users.create!(name: "Meg", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "meg@gmail.com", password: "merchant", role: 1)
@@ -21,7 +22,7 @@ RSpec.describe 'As an Admin' do
 			@order_1.item_orders.create!(item: @rope, price: @rope.price, quantity: 5)
 			@order_1.item_orders.create!(item: @ball, price: @ball.price, quantity: 10)
 
-			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@meg)
+			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
 
 			visit "/admin/merchants/#{@megs_shop.id}"
 
