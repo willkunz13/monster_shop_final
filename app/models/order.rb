@@ -26,7 +26,7 @@ class Order <ApplicationRecord
     end
   end
 
-  def package_fulfilled
-    update(status: 'packaged') if item_orders.distinct.pluck(:status) == 'fulfilled'
-  end
+  # def package_fulfilled
+  #   update(status: 'packaged') if item_orders.distinct.pluck(:status) == 'fulfilled'
+  # end
 end
