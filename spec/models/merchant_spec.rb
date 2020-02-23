@@ -11,6 +11,7 @@ describe Merchant, type: :model do
 
   describe "relationships" do
     it {should have_many :items}
+		it {should belong_to(:merchant).optional}
   end
 
   describe 'instance methods' do
