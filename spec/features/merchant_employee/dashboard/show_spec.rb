@@ -67,5 +67,15 @@ RSpec.describe 'As a Merchant Employee' do
 				expect(page).not_to have_content("Total Amount to be Charged: $#{@order_1.merchant_total(@brians_shop.id)}")
 			end
 		end
+
+		it 'I see a link that takes me to my employers inventory list' do
+
+			expect(page).to have_link("Inventory")
+
+			click_on "Inventory"
+
+			expect(current_path).to eq("/merchants/#{@megs_shop.id}/items")
+			expect(current_path).not_to eq("/merchants/#{@brians_shop.id}/items")
+		end
 	end
 end
