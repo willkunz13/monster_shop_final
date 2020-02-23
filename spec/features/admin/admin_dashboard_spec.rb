@@ -69,16 +69,18 @@ RSpec.describe 'As an ADMIN', type: :feature do
       end
 
       within "#order-#{@order_2.id}" do
-        expect(page).to have_link('Steve')
+        expect(page).to have_link('Sebastian')
         expect(page).to have_content(@order_2.id)
         expect(page).to have_content(@order_2.created_at.to_date)
       end
 
       within "#order-#{@order_3.id}" do
-        expect(page).to have_link('Steve')
+        expect(page).to have_link('Will')
         expect(page).to have_content(@order_3.id)
         expect(page).to have_content(@order_3.created_at.to_date)
       end
+
+      save_and_open_page
     end
   end
 end
