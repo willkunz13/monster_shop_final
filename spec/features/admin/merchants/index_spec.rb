@@ -31,7 +31,7 @@ RSpec.describe 'As an Admin' do
 			end
 		end
 
-		xit 'I can click on a DISABLE button next to any Merchants who are not yet disabled and their status becomes DISABLED' do
+		it 'I can click on a DISABLE button next to any Merchants who are not yet disabled and their status becomes DISABLED' do
 
 			visit "/admin/merchants"
 
@@ -41,16 +41,19 @@ RSpec.describe 'As an Admin' do
 			end
 
 			within "#merchant-#{@megs_shop.id}" do
+				expect(page).to have_button("disable")
+				expect(page).to have_content("Account Status: enabled")
+
 				click_on "disable"
 
 				expect(current_path).to eq("/admin/merchants")
-				expect(page).not_to have_button("disable")
 				expect(page).to have_content("Account Status: disabled")
-				expect(page).to have_content("Account for '#{@megs_shop.name}' is now DISABLED.")
 			end
+
+			expect(page).to have_content("Account for #{@megs_shop.name} is now DISABLED.")
 		end
 
-		xit 'I can click ENABLE button next to any Merchants who are not yet enabled and their status becomes ENABLED' do
+		it 'I can click ENABLE button next to any Merchants who are not yet enabled and their status becomes ENABLED' do
 
 			visit "/admin/merchants"
 
@@ -60,13 +63,16 @@ RSpec.describe 'As an Admin' do
 			end
 
 			within "#merchant-#{@brians_shop.id}" do
+				expect(page).to have_button("enable")
+				expect(page).to have_content("Account Status: disabled")
+
 				click_on "enable"
 
 				expect(current_path).to eq("/admin/merchants")
-				expect(page).not_to have_button("enable")
 				expect(page).to have_content("Account Status: enabled")
-				expect(page).to have_content("Account for '#{@brians_shop.name}' is now ENABLED.")
 			end
+
+			expect(page).to have_content("Account for #{@brians_shop.name} is now ENABLED.")
 		end
 	end
 end
