@@ -1,5 +1,5 @@
-class Merchant::DashboardController< Merchant::BaseController
-	
+class MerchantEmployee::DashboardController< MerchantEmployee::BaseController
+
   def show
 	end
 end
