@@ -31,7 +31,7 @@ RSpec.describe 'As an Admin' do
 			end
 		end
 
-		it 'I can click on a disable button next to any Merchants who are not yet disabled and their status becomes disabled' do
+		xit 'I can click on a disable button next to any Merchants who are not yet disabled and their status becomes disabled' do
 
 			visit "/admin/merchants"
 
@@ -50,7 +50,7 @@ RSpec.describe 'As an Admin' do
 			end
 		end
 
-		it 'I can click enable button next to any Merchants who are not yet enabled and their status becomes enabled' do
+		xit 'I can click enable button next to any Merchants who are not yet enabled and their status becomes enabled' do
 
 			visit "/admin/merchants"
 
