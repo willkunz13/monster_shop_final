@@ -41,7 +41,8 @@ RSpec.describe Merchant, type: :model do
     end
 
     it '.distinct_cities' do
-			expect(@meg.distinct_cities).to eq(["Denver","Hershey"])
+			expect(@meg.distinct_cities).to include("Denver")
+			expect(@meg.distinct_cities).to include("Hershey")
     end
 
 		it '.pending_orders' do

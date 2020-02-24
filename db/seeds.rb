@@ -9,7 +9,7 @@ Order.destroy_all
 
 # megs_shop items
 @tire = @megs_shop.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
-@collar = @megs_shop.items.create!(name: "Pretty Collar", description: "Your Pet will look Stunning", price: 150, image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com%2FBLACK-DECKER-Collar-Tracker-Resistant%2Fdp%2FB076KVQSQG&psig=AOvVaw0FqGRwecGC3UUXzX4cHL2A&ust=1582559969577000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCODEyLmF6OcCFQAAAAAdAAAAABAE", inventory: 35)
+@collar = @megs_shop.items.create!(name: "Pretty Collar", description: "Your Pet will look Stunning", price: 150, image: "https://images-na.ssl-images-amazon.com/images/I/61bwboZJNkL._AC_SL1001_.jpg", inventory: 35)
 @paw_pads = @megs_shop.items.create!(name: "Doggie Booties", description: "Keep those paws warm", price: 80, image: "http://t0.gstatic.com/images?q=tbn%3AANd9GcRDmskkSFT5WhsbsBLHtt5sl3ilRUxjnkShsLX_ZRm7P0Aa7t0Bvw&usqp=CAc", inventory: 16)
 
 # brians_shop items

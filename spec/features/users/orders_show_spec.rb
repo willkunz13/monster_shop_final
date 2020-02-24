@@ -103,7 +103,7 @@ RSpec.describe 'As a User' do
       end
 
       within "#order-#{new_order.id}" do
-        expect(page).to have_link(new_order.id)
+        expect(page).to have_link(new_order.id.to_s)
         expect(page).to have_content(new_order.created_at.to_date)
         expect(page).to have_content(new_order.updated_at.to_date)
         expect(page).to have_content(new_order.status)
