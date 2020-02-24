@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe Merchant, type: :model do
-  describe "validations" do
+RSpec.describe Merchant, type: :model do
+  describe "Validations" do
     it { should validate_presence_of :name }
     it { should validate_presence_of :address }
     it { should validate_presence_of :city }
@@ -9,12 +9,12 @@ describe Merchant, type: :model do
     it { should validate_presence_of :zip }
   end
 
-  describe "relationships" do
+  describe "Relationships" do
     it {should have_many :items}
 		it {should have_many :users}
   end
 
-  describe 'instance methods' do
+  describe 'Instance methods' do
     before(:each) do
       @meg = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
 			@chain = @meg.items.create!(name: "Chain", description: "It'll never break!", price: 30, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 22)

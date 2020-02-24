@@ -1,4 +1,5 @@
 class User::ProfileController < User::BaseController
+
   def show
     @user = current_user
   end
@@ -23,7 +24,7 @@ class User::ProfileController < User::BaseController
   end
 
   def edit_password
-    user = current_user
+    @user = current_user
   end
 
   private

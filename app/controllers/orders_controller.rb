@@ -1,7 +1,6 @@
 class OrdersController <ApplicationController
 
   def new
-
   end
 
   def show
@@ -31,6 +30,12 @@ class OrdersController <ApplicationController
   private
 
   def order_params
-	parmas =  params.permit(:name, :address, :city, :state, :zip).merge(user: current_user)
+	parmas =  params.permit(
+		:name,
+		:address,
+		:city,
+		:state,
+		:zip
+	).merge(user: current_user)
   end
 end

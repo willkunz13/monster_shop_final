@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'As a visitor' do
-  describe 'I can see a registration page' do
+  describe 'I visit the Welcome page and see it.' do
     it 'has a link to register' do
+
       visit '/merchants'
 
       within 'nav' do
@@ -13,6 +14,7 @@ RSpec.describe 'As a visitor' do
     end
 
     it 'can fill in info about a user' do
+
       visit '/register'
 
       within '#new_user_form' do
@@ -33,6 +35,7 @@ RSpec.describe 'As a visitor' do
     end
 
     it 'cannot create a user without all information' do
+
       visit '/register'
 
       within '#new_user_form' do
@@ -50,6 +53,7 @@ RSpec.describe 'As a visitor' do
     end
 
     it 'can save entries for an already entered email' do
+			
       visit '/merchants'
 
       within 'nav' do

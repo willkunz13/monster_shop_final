@@ -1,54 +1,35 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 Merchant.destroy_all
 Item.destroy_all
+User.destroy_all
+Order.destroy_all
 
 # merchants
-bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
-dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+@megs_shop = Merchant.create!(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
+@brians_shop = Merchant.create!(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
-# bike_shop items
-tire = bike_shop.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
+# megs_shop items
+@tire = @megs_shop.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+@collar = @megs_shop.items.create!(name: "Pretty Collar", description: "Your Pet will look Stunning", price: 150, image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.com%2FBLACK-DECKER-Collar-Tracker-Resistant%2Fdp%2FB076KVQSQG&psig=AOvVaw0FqGRwecGC3UUXzX4cHL2A&ust=1582559969577000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCODEyLmF6OcCFQAAAAAdAAAAABAE", inventory: 35)
+@paw_pads = @megs_shop.items.create!(name: "Doggie Booties", description: "Keep those paws warm", price: 80, image: "http://t0.gstatic.com/images?q=tbn%3AANd9GcRDmskkSFT5WhsbsBLHtt5sl3ilRUxjnkShsLX_ZRm7P0Aa7t0Bvw&usqp=CAc", inventory: 16)
 
-# dog_shop items
-pull_toy = dog_shop.items.create(name: 'Pull Toy', description: 'Great pull toy!', price: 10, image: 'http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg', inventory: 32)
-dog_bone = dog_shop.items.create(name: 'Dog Bone', description: "They'll love it!", price: 21, image: 'https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg', active?: false, inventory: 21)
+# brians_shop items
+@pull_toy = @brians_shop.items.create!(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
+@rope = @brians_shop.items.create!(name: "Chewy Rope", description: "Great for teething puppies", price: 50, image: "https://s7d2.scene7.com/is/image/PetSmart/5264665", inventory: 38)
+@ball = @brians_shop.items.create!(name: "Tennis Ball", description: "Great for Fetch!", price: 45, image: "https://images-na.ssl-images-amazon.com/images/I/51QTU9nQCHL._AC_.jpg", inventory: 23)
 
 # user information
-merchant = User.create(
-  name: 'penelope',
-  address: '123 W',
-  city: 'a',
-  state: 'IN',
-  zip: 12345,
-  email: 'a',
-  password: '1',
-  role: 1
-)
-user = User.create(
-  name: 'person',
-  address: '123 W',
-  city: 'a',
-  state: 'IN',
-  zip: 12345,
-  email: 'b',
-  password: '1',
-  role: 0
-)
+@merchant_1 = @megs_shop.users.create!(name: "Meg", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "merchant1@gmail.com", password: "merchant1", role: 1)
+@merchant_2 = @brians_shop.users.create!(name: "Meg", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "merchant2@gmail.com", password: "merchant2", role: 1)
+@user = User.create!(name: 'person', address: '123 W', city: 'a', state: 'IN', zip: 12345, email: 'user@gmail.com', password: 'user', role: 0)
+@admin = User.create(name: 'Kevin', address: '123 Street Road', city: 'City Name', state: 'CO', zip: 12345, email: 'admin@gmail.com', password: 'admin', role: 2)
 
-admin = User.create(
-  name: 'Kevin',
-  address: '123 Street Road',
-  city: 'City Name',
-  state: 'CO',
-  zip: 12345,
-  email: 'admin@example.com',
-  password: 'password1',
-  role: 2
-)
+# orders
+@order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user)
+
+# add items to order
+@order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
+@order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
+@order_1.item_orders.create!(item: @collar, price: @collar.price, quantity: 7)
+@order_1.item_orders.create!(item: @paw_pads, price: @paw_pads.price, quantity: 8)
+@order_1.item_orders.create!(item: @rope, price: @rope.price, quantity: 5)
+@order_1.item_orders.create!(item: @ball, price: @ball.price, quantity: 10)

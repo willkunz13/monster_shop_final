@@ -36,7 +36,7 @@ RSpec.describe "As a Visitor" do
         fill_in 'Image', with: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588"
         fill_in 'Inventory', with: 11
 
-        click_button "Update Item"
+        click_on "Update Item"
 
         expect(current_path).to eq("/items/#{@tire.id}")
         expect(page).to have_content("GatorSkins")
@@ -63,7 +63,7 @@ RSpec.describe "As a Visitor" do
         fill_in 'Image', with: ""
         fill_in 'Inventory', with: 11
 
-        click_button "Update Item"
+        click_on "Update Item"
 
         expect(page).to have_content("Name can't be blank and Image can't be blank")
         expect(page).to have_button("Update Item")

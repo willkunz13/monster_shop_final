@@ -1,18 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'As a USER', type: :feature do
+RSpec.describe 'As a User' do
   describe 'When I want to change my password' do
     before :each do
-      @user1 = User.create(
-        name: 'Steve',
-        address: '123 Street Road',
-        city: 'City Name',
-        state: 'CO',
-        zip: 12345,
-        email: 'example@example.com',
-        password: 'password1',
-        role: 0
-      )
+			@user1 = User.create!(name: 'Steve', address: '123 Street Road', city: 'City Name', state: 'CO', zip: 12345, email: 'example@example.com', password: 'password1', role: 0)
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
 
       visit '/user/profile'
@@ -39,7 +31,7 @@ RSpec.describe 'As a USER', type: :feature do
       end
 
       expect(current_path).to eq('/user/profile')
-      expect(page).to have_content('Successfully updated password.') 
+      expect(page).to have_content('Successfully updated password.')
     end
   end
 end

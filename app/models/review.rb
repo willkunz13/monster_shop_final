@@ -1,5 +1,5 @@
-class Review <ApplicationRecord
-  belongs_to :item
+class Review < ApplicationRecord
+	validates_inclusion_of :rating, in: 1..5
 
-  validates_inclusion_of :rating, in: 1..5
+  belongs_to :item
 end
