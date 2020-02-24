@@ -54,7 +54,7 @@ RSpec.describe 'As an Admin' do
 		it 'If any users have pending orders containing items I sell Then I see a list of these orders.' do
 
 			within "#order-#{@order_1.id}" do
-				expect(page).to have_link(@order_1.id)
+				expect(page).to have_link(@order_1.id.to_s)
 				expect(page).to have_content(@order_1.created_at)
 				expect(page).to have_content("Total Quantitiy of Items: #{@order_1.merchant_quantity(@megs_shop.id)}")
 				expect(page).to have_content("Total Amount to be Charged: $#{@order_1.merchant_total(@megs_shop.id)}")

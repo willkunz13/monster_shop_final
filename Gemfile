@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.5.3'
+ruby '2.6.3'
 
 gem 'rails', '~> 5.1.7'
 gem 'pg', '>= 0.18', '< 2.0'
@@ -22,7 +22,7 @@ gem 'bootstrap-sass'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara',  github: 'DocSpring/capybara', branch: :crash_on_deprecations
   gem 'launchy'
   gem 'pry'
   gem 'simplecov'
