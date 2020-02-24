@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe 'As an Admin' do
 	describe 'When I visit the merchants index page.' do
 		before :each do
-			@megs_shop = Merchant.create!(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203) #status ENABLED
-			@brians_shop = Merchant.create!(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210) #status DISABLED
+			@megs_shop = Merchant.create!(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203, enabled?: true)
+			@brians_shop = Merchant.create!(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210, enabled?: false)
 
 			@admin = User.create!(name: "Admin", address: "123 Admin cir.", city: "The provinance of holeville", state: "Ca", zip: "83845", email: "admin@gmail.com", password: "admin", role: 2)
 
@@ -31,7 +31,7 @@ RSpec.describe 'As an Admin' do
 			end
 		end
 
-		xit 'I can click on a disable button next to any Merchants who are not yet disabled and their status becomes disabled' do
+		xit 'I can click on a DISABLE button next to any Merchants who are not yet disabled and their status becomes DISABLED' do
 
 			visit "/admin/merchants"
 
@@ -50,7 +50,7 @@ RSpec.describe 'As an Admin' do
 			end
 		end
 
-		xit 'I can click enable button next to any Merchants who are not yet enabled and their status becomes enabled' do
+		xit 'I can click ENABLE button next to any Merchants who are not yet enabled and their status becomes ENABLED' do
 
 			visit "/admin/merchants"
 
@@ -59,7 +59,7 @@ RSpec.describe 'As an Admin' do
 				expect(page).to have_content("Account Status: enabled")
 			end
 
-				within "#merchant-#{@brians_shop.id}" do
+			within "#merchant-#{@brians_shop.id}" do
 				click_on "enable"
 
 				expect(current_path).to eq("/admin/merchants")
