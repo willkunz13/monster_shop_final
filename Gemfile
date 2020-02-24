@@ -16,8 +16,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'json'
 gem 'bcrypt'
-gem 'yarn'
-gem 'selenium-webdriver'
 gem 'bootstrap-sass'
 
 
