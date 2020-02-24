@@ -1,7 +1,7 @@
 Merchant.destroy_all
 Item.destroy_all
 User.destroy_all
-Oder.destroy_all
+Order.destroy_all
 
 # merchants
 @megs_shop = Merchant.create!(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
