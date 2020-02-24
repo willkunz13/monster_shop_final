@@ -19,9 +19,9 @@ RSpec.describe "As an ADMIN" do
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
 
-    xit 'the status of all that merchants items should be INACTIVE after clicking DISABLE that merchant from merchant index page' do
+    it 'the status of all that merchants items should be INACTIVE after clicking DISABLE that merchant from merchant index page' do
 
-      visit "/admin/merchants/#{@meg.id}/items"
+      visit "/merchants/#{@meg.id}/items"
 
       within "#item-#{@tire.id}" do
         expect(page).to have_content("Active")
@@ -29,9 +29,8 @@ RSpec.describe "As an ADMIN" do
       within "#item-#{@chain.id}" do
         expect(page).to have_content("Active")
       end
-      within "#item-#{@shifter.id}" do
-        expect(page).to have_content("Inactive")
-      end
+
+      expect(page).not_to have_content("Inactive")
 
       visit "/admin/merchants"
 
@@ -39,20 +38,14 @@ RSpec.describe "As an ADMIN" do
 				click_on "disable"
       end
 
-      visit "/admin/merchants/#{@meg.id}/items"
+      visit "/merchants/#{@meg.id}/items"
 
-      within "#item-#{@tire.id}" do
-        expect(page).to have_content("Inactive")
-      end
-      within "#item-#{@chain.id}" do
-        expect(page).to have_content("Inactive")
-      end
-      within "#item-#{@shifter.id}" do
-        expect(page).to have_content("Inactive")
-      end
+      expect(page).not_to have_content("Inactive")
+      expect(page).not_to have_content("Inactive")
+      expect(page).not_to have_content("Inactive")
     end
 
-    xit 'the status of all that merchants items should be ACTIVE after clicking ENABLE that merchant from merchant index page' do
+    it 'the status of all that merchants items should be ACTIVE after clicking ENABLE that merchant from merchant index page' do
 
       visit "/admin/merchants/#{@brian.id}/items"
 
