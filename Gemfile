@@ -25,7 +25,6 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'shoulda-matchers'
-  gem 'simplecov'
 end
 
 group :development do
@@ -33,4 +32,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
+group :test do
+	gem 'simplecov'
+end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
