@@ -47,14 +47,10 @@ RSpec.describe "As an ADMIN" do
 
     it 'the status of all that merchants items should be ACTIVE after clicking ENABLE that merchant from merchant index page' do
 
-      visit "/admin/merchants/#{@brian.id}/items"
+      visit "/merchants/#{@brian.id}/items"
 
-      within "#item-#{@pull_toy.id}" do
-        expect(page).to have_content("Inactive")
-      end
-      within "#item-#{@dog_bone.id}" do
-        expect(page).to have_content("Inactive")
-      end
+      expect(page).not_to have_content("Inactive")
+      expect(page).not_to have_content("Inactive")
 
       visit "/admin/merchants"
 
@@ -62,7 +58,7 @@ RSpec.describe "As an ADMIN" do
 				click_on "enable"
       end
 
-      visit "/admin/merchants/#{@brian.id}/items"
+      visit "/merchants/#{@brian.id}/items"
 
       within "#item-#{@pull_toy.id}" do
         expect(page).to have_content("Active")
