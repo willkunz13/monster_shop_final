@@ -69,98 +69,88 @@ RSpec.describe "Items Index Page" do
       expect(page).not_to have_content("Inactive")
       expect(page).not_to have_content("Inventory: #{@dog_bone.inventory}")
       expect(page).not_to have_css("img[src*='#{@dog_bone.image}']")
-    # end
-  end
+  	end
 
-  it "should display 5 most and least poular items" do
-	 user = User.create(
-        name: 'Steve',
-        address: '123 Street Road',
-        city: 'City Name',
-        state: 'CO',
-        zip: 12345,
-        email: 'example@example.com',
-        password: 'password1',
-        role: 0
-      )
+  	it "should display 5 most and least poular items" do
+	 		user = User.create!(name: 'Steve', address: '123 Street Road', city: 'City Name', state: 'CO', zip: 12345, email: 'example@example.com', password: 'password1', role: 0)
 
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       11.times do
         visit "/items/#{@tire.id}"
         click_on "Add To Cart"
       end
 
-    10.times do
-      visit "/items/#{@seat.id}"
-      click_on "Add To Cart"
-    end
+    	10.times do
+      	visit "/items/#{@seat.id}"
+      	click_on "Add To Cart"
+    	end
 
-    9.times do
-      visit "/items/#{@pump.id}"
-      click_on "Add To Cart"
-    end
+    	9.times do
+      	visit "/items/#{@pump.id}"
+      	click_on "Add To Cart"
+    	end
 
-    8.times do
-      visit "/items/#{@pedals.id}"
-      click_on "Add To Cart"
-    end
+    	8.times do
+      	visit "/items/#{@pedals.id}"
+      	click_on "Add To Cart"
+    	end
 
-    7.times do
-      visit "/items/#{@helmet.id}"
-      click_on "Add To Cart"
-    end
+    	7.times do
+      	visit "/items/#{@helmet.id}"
+      	click_on "Add To Cart"
+    	end
 
       6.times do
         visit "/items/#{@pull_toy.id}"
         click_on "Add To Cart"
       end
 
-    5.times do
-      visit "/items/#{@bed.id}"
-      click_on "Add To Cart"
-    end
+    	5.times do
+      	visit "/items/#{@bed.id}"
+      	click_on "Add To Cart"
+    	end
 
-    4.times do
-      visit "/items/#{@carrier.id}"
-      click_on "Add To Cart"
-    end
+    	4.times do
+      	visit "/items/#{@carrier.id}"
+      	click_on "Add To Cart"
+    	end
 
-    3.times do
-      visit "/items/#{@dog_food.id}"
-      click_on "Add To Cart"
-    end
+    	3.times do
+      	visit "/items/#{@dog_food.id}"
+      	click_on "Add To Cart"
+    	end
 
-    2.times do
-      visit "/items/#{@collar.id}"
-      click_on "Add To Cart"
-    end
+    	2.times do
+      	visit "/items/#{@collar.id}"
+      	click_on "Add To Cart"
+    	end
 
-    1.times do
-      visit "/items/#{@brush.id}"
-      click_on "Add To Cart"
-    end
+    	1.times do
+      	visit "/items/#{@brush.id}"
+      	click_on "Add To Cart"
+    	end
 
-    visit '/cart'
-    click_on 'Checkout'
+    	visit '/cart'
+    	click_on 'Checkout'
 
-    fill_in :name, with: "Kid Rock"
-    fill_in :address, with: "123 Hollywood Blvd"
-    fill_in :city, with: "Los Angeles"
-    fill_in :state, with: "CA"
-    fill_in :zip, with: "98765"
+    	fill_in :name, with: "Kid Rock"
+    	fill_in :address, with: "123 Hollywood Blvd"
+    	fill_in :city, with: "Los Angeles"
+    	fill_in :state, with: "CA"
+    	fill_in :zip, with: "98765"
 
-    click_on  'Create Order'
+    	click_on  'Create Order'
 
-    visit '/items'
+    	visit '/items'
 
-    within("#popular_items") do
-      expect(page).to have_content("Gatorskins: 11 Seat: 10 Pump: 9 Pedals: 8 Helmet: 7")
-    end
-    within("#not_popular") do
-      expect(page).to have_content("Dog Brush: 1 Dog Collar: 2 Bag o Food: 3 Carrier: 4 Doggie Bed: 5")
-    end
-  end
-end
+    	within("#popular_items") do
+      	expect(page).to have_content("Gatorskins: 11 Seat: 10 Pump: 9 Pedals: 8 Helmet: 7")
+    	end
+
+    	within("#not_popular") do
+      	expect(page).to have_content("Dog Brush: 1 Dog Collar: 2 Bag o Food: 3 Carrier: 4 Doggie Bed: 5")
+    	end
+  	end
+	end
 end

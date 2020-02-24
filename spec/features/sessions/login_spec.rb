@@ -113,28 +113,29 @@ describe 'As a Merchant' do
       expect(current_path).to eq("/merchant_employee/dashboard")
     end
 
-it 'If I click on the log in button when I am already logged in then I recive a flash message and am sent back to the profile page' do
-  visit '/welcome'
+		it 'If I click on the log in button when I am already logged in then I recive a flash message and am sent back to the profile page' do
 
-  expect(current_path).to eq('/welcome')
+  		visit '/welcome'
 
-  click_on "Log In"
+  		expect(current_path).to eq('/welcome')
 
-  expect(current_path).to eq('/login')
+  		click_on "Log In"
 
-  within '#log_in_form' do
-    fill_in :email, with: @merchant.email
-    fill_in :password, with: @merchant.password
+  		expect(current_path).to eq('/login')
 
-    click_on 'Log In'
-  end
+  		within '#log_in_form' do
+    		fill_in :email, with: @merchant.email
+    		fill_in :password, with: @merchant.password
 
-  expect(current_path).to eq("/merchant_employee/dashboard")
+    		click_on 'Log In'
+  		end
 
-  visit '/login'
+  		expect(current_path).to eq("/merchant_employee/dashboard")
 
-  expect(page).to have_content("You are already logged in as Merchant, to log out please select 'Log Out' at the top of your page.")
-end
+  		visit '/login'
+
+  		expect(page).to have_content("You are already logged in as Merchant, to log out please select 'Log Out' at the top of your page.")
+		end
 
     it 'If I enter the wrong infromation then I am redirected back to the form with a error message' do
 

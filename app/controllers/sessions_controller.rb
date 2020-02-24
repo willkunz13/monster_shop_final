@@ -1,10 +1,4 @@
 class SessionsController < ApplicationController
-  # def new
-  #   unless session[:user_id].nil?
-  #     flash[:notice] = "You are already logged in, to log out please select 'Log Out' at the top of your page."
-  #     redirect_to '/user/profile'
-  #   end
-  # end
 
   def new
     if !session[:user_id].nil?
@@ -18,18 +12,6 @@ class SessionsController < ApplicationController
       flash[:notice] = "You are already logged in as #{current_user.name}, to log out please select 'Log Out' at the top of your page."
     end
   end
-
-  # def create
-  #   user = User.find_by(email: params[:email])
-  #   if !user.nil? && user.authenticate(params[:password])
-  #     session[:user_id] = user.id
-  #     flash[:success] = "#{user.name}, has been successfully logged in!"
-  #     redirect_to '/user/profile'
-  #   else
-  #     flash.now[:notice] = 'Your Log in attempt failed, Wrong email or password'
-  #     render :new
-  #   end
-  # end
 
   def create
     user = User.find_by(email: params[:email])

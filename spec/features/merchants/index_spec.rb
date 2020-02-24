@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'merchant index page', type: :feature do
+RSpec.describe 'merchant index page' do
   describe 'As a user' do
     before :each do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 80203)
@@ -8,14 +8,16 @@ RSpec.describe 'merchant index page', type: :feature do
     end
 
     it 'I can see a list of merchants in the system' do
-      visit '/merchants'
+
+      visit merchants_path
 
       expect(page).to have_link("Brian's Bike Shop")
       expect(page).to have_link("Meg's Dog Shop")
     end
 
     it 'I can see a link to create a new merchant' do
-      visit '/merchants'
+
+      visit merchants_path
 
       expect(page).to have_link("New Merchant")
 

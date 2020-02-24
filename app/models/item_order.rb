@@ -9,8 +9,4 @@ class ItemOrder < ApplicationRecord
   def subtotal
     price * quantity
   end
-
-  # def fulfill
-  #   update(status: "fulfilled")
-  # end
 end

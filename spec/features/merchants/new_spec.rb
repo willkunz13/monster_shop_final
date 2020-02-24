@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'merchant new page', type: :feature do
+RSpec.describe 'merchant new page' do
   describe 'As a user' do
     it 'I can create a new merchant' do
       visit '/merchants/new'
@@ -29,7 +29,9 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.state).to eq(state)
       expect(new_merchant.zip).to eq(zip)
     end
+
     it 'I cant create a merchant if all fields are not filled in' do
+
       visit '/merchants/new'
 
       name = "Sal's Calz(ones)"
@@ -49,6 +51,5 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(page).to have_content("Address can't be blank and State can't be blank")
       expect(page).to have_button("Create Merchant")
     end
-
   end
 end
