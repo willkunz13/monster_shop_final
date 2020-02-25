@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   namespace :merchant_employee do
     get '/dashboard', to: 'dashboard#show'
     get '/orders/:id', to: 'orders#show'
+    patch '/orders/:id', to: 'orders#fulfill'
   end
 
 	# Admin

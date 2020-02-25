@@ -62,5 +62,13 @@ RSpec.describe 'As a MERCHANT', type: :feature do
         expect(page).to have_content('Doggie Booties')
       end
     end
+
+    it 'can fulfill items from order show page' do
+      visit "/merchant_employee/orders/#{@order_1.id}"
+
+      within "#item-#{@tire.id}" do
+        click_button "Fulfill"
+      end
+    end
   end
 end
