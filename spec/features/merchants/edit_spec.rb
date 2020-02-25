@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "As a Visitor" do
+RSpec.describe "As a Merchant Employee" do
   describe "After visiting a merchants show page and clicking on updating that merchant" do
     before :each do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 11234)
@@ -43,7 +43,7 @@ RSpec.describe "As a Visitor" do
     it 'I see a flash message if i dont fully complete form' do
 
       visit "/merchants/#{@bike_shop.id}"
-			
+
       click_on "Update Merchant"
 
       fill_in 'Name', with: ""

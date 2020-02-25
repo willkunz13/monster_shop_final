@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'As an ADMIN' do
+RSpec.describe 'As an Admin' do
   describe 'When I do visit my dashboard' do
     before :each do
       @mike = Merchant.create!(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80_203)

@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'merchant new page' do
-  describe 'As a user' do
+RSpec.describe 'As a Merchant Employee' do
+  describe 'When I visit the Merchant new page. ' do
+		
     it 'I can create a new merchant' do
       visit '/merchants/new'
 

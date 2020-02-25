@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'Cart show' do
+RSpec.describe 'As a User' do
   describe 'When I have added items to my cart' do
-    describe 'and visit my cart path' do
+    describe 'and visited my cart path' do
       before(:each) do
         @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
         @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -23,7 +23,7 @@ RSpec.describe 'Cart show' do
 				expect(current_path).to eq('/cart')
       end
 
-      it 'there is a button to delete the item next to each item' do
+      it 'I see there is a button to delete the item next to each item' do
 
         @items_in_cart.each do |item|
           within "#cart-item-#{item.id}" do

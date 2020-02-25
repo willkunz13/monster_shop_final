@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Items Index Page" do
+RSpec.describe "As a Visitor" do
   describe "When I visit the items index page" do
     before(:each) do
       @meg = Merchant.create!(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -21,7 +21,7 @@ RSpec.describe "Items Index Page" do
       @brush = @brian.items.create!(name: "Dog Brush", description: "Detangle those curls", price: 12, image: "https://s7d2.scene7.com/is/image/PetSmart/5280398", inventory: 32)
     end
 
-    it "all items or merchant names are links" do
+    it "I see that all items or merchant names are links" do
       visit '/items'
 
       expect(page).to have_link(@tire.name)
@@ -30,7 +30,7 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_link(@pull_toy.merchant.name)
     end
 
-    it "all items images are links to its show page" do
+    it "I see that all items images are links to its show page" do
       visit '/items'
 
       within "#item-#{@pull_toy.id}" do
