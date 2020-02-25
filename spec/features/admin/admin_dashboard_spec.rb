@@ -25,12 +25,12 @@ RSpec.describe 'As an ADMIN' do
     end
 
     it 'I can see all orders in the system' do
-
+      @order_1.item_orders.update(status: 1)
+      @order_1.try_package
       within "#order-#{@order_1.id}" do
         expect(page).to have_link('Steve')
         expect(page).to have_content(@order_1.id)
         expect(page).to have_content(@order_1.created_at.to_date)
-        expect(page).to have_button("Ship Package")
       end
 
       within "#order-#{@order_2.id}" do
@@ -44,7 +44,7 @@ RSpec.describe 'As an ADMIN' do
         expect(page).to have_content(@order_3.id)
         expect(page).to have_content(@order_3.created_at.to_date)
       end
-
+	binding.pry
       within "#order-#{@order_1.id}" do
         click_on "Ship Package"
       end
