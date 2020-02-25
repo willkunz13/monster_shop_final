@@ -4,18 +4,6 @@
 <% else %>
   <h1>All Items</h1>
 <% end %>
-  <h3>Top 5 Most Popular Items: </h3>
-  <section id="popular_items">
-  <% @items.most_popular(5).each do |item| %>
-    <%= item.name %>: <%= item.quantity_ordered %>
-<% end %>
-  </section>
-<h3>Bottom 5 Least Popular Items:</h3>
-<section id="not_popular">
-<% @items.least_popular(5).each do |item| %>
-   <%= item.name %>: <%= item.quantity_ordered %>
-<% end %>
-</section>
 
 <section class="grid-container">
   <% @items.each do |item| %>
@@ -26,13 +14,30 @@
       <section id= 'image-<%= item.id %>'>
       <p><%=link_to image_tag(item.image), "/merchant_employee/merchants/#{@merchant.id}/items/#{item.id}" %></p>
       </section>
+			<p><%= link_to "Delete Item", "/merchant_employee/merchants/#{@merchant.id}/items/#{item.id}", method: :delete if item.no_orders? %></p>
+			<p><%= button_to "Deactivate", "/merchant_employee/merchants/#{@merchant.id}/items/#{item.id}/update", method: :patch %></p>
       <p> <%= item.description unless @merchant%> </p>
       <p>Price: <%=number_to_currency(item.price) %> </p>
       <p>Inventory: <%= item.inventory %> </p>
       <p>Active</p>
       <% if !@merchant %>
       <% end %>
-    </section>
+	<% else %>
+	<section class = "grid-item" id= 'item-<%=item.id%>'>
+		<h2> <%=link_to item.name, "/merchant_employee/merchants/#{@merchant.id}/items/#{item.id}" %> </h2>
+		<p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
+		<section id= 'image-<%= item.id %>'>
+			<p><%=link_to image_tag(item.image), "/merchant_employee/merchants/#{@merchant.id}/items/#{item.id}" %></p>
+		</section>
+		<p><%= link_to "Delete Item", "/merchant_employee/merchants/#{@merchant.id}/items/#{item.id}", method: :delete if item.no_orders? %></p>
+		<p><%= button_to "Activate", "/merchant_employee/merchants/#{@merchant.id}/items/#{item.id}/update", method: :patch %></p>
+		<p> <%= item.description unless @merchant%> </p>
+		<p>Price: <%=number_to_currency(item.price) %> </p>
+		<p>Inventory: <%= item.inventory %> </p>
+		<p>Active</p>
+			<% if !@merchant %>
+			<% end %>
+  </section>
     <% end %>
-    <% end %>
+  <% end %>
 </section>

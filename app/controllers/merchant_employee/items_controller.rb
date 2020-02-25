@@ -51,6 +51,7 @@ class MerchantEmployee::ItemsController < MerchantEmployee::BaseController
 		@merchant = @item.merchant
     Review.where(item_id: @item.id).destroy_all
     @item.destroy
+		flash[:notice] = "#{@item.name}, has been perminatley removed from inventory!"
     redirect_to "/merchant_employee/merchants/#{@merchant.id}/items"
   end
 

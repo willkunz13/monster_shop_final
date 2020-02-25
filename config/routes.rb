@@ -65,6 +65,7 @@ Rails.application.routes.draw do
 		get '/merchants/:id/items/:id', to: 'items#show'
 		get '/merchants/:id/items/:id/edit', to: 'items#edit'
 		patch '/merchants/:id/items/:id', to: 'items#update'
+		patch '/merchants/:id/items/:id/update', to: 'item_status#update'
 		delete '/merchants/:id/items/:id', to: 'items#destroy'
   end
 
