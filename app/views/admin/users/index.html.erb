@@ -12,7 +12,7 @@
 		</tr>
 		<%  admins.each do |admin| %>
 			<tr>
-			<th><%= link_to admin.name, admin_path(admin.id)  %></th>
+			<th><%= link_to admin.name, "/admin/users/#{admin.id}"  %></th>
 			<th><%= admin.created_at.to_date %></th>
 			</tr>
 		<% end %>
@@ -35,7 +35,7 @@
 		</tr>
 		<%  merchants.each do |merchant| %>
 			<tr>
-			<th><%= link_to merchant.name, admin_path(merchant.id) %></th>
+			<th><%= link_to merchant.name, "/admin/users/#{merchant.id}" %></th>
 			<th><%= merchant.created_at.to_date %></th>
 			</tr>
 		<% end %>
