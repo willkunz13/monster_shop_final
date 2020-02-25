@@ -42,7 +42,7 @@
 	</table>
 </section>
 
-<br>		
+<br>
 <br>
 <br>
 
@@ -58,7 +58,7 @@
 		</tr>
 		<%  defaults.each do |default| %>
 			<tr>
-			<th><%= link_to default.name, admin_path(default.id)  %></th>
+			<th><%= link_to default.name, "/admin/users/#{default.id}"  %></th>
 			<th><%= default.created_at.to_date %></th>
 			</tr>
 		<% end %>
