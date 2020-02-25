@@ -8,8 +8,8 @@ class MerchantEmployee::OrdersController < ApplicationController
   def fulfill
     merchant = current_user.merchant
     require 'pry'; binding.pry
-    order = merchant.orders.find(params[:id])
-    item_orders = merchant.item_orders.where(order: order)
-
+    order = merchant.item_orders.first
+    order.fulfill
+    
   end
 end

@@ -9,4 +9,9 @@ class ItemOrder < ApplicationRecord
   def subtotal
     price * quantity
   end
+
+  def fulfill
+    update(status: 1)
+    require 'pry'; binding.pry
+  end
 end
