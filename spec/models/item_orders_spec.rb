@@ -25,7 +25,7 @@ RSpec.describe ItemOrder, type: :model do
       expect(item_order_1.subtotal).to eq(200)
     end
 
-    it '.can_fulfill' do
+    it 'fulfill' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       tire = meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
 			user = User.create(name: 'Steve', address: '123 Street Road', city: 'City Name', state: 'CO', zip: 12345, email: 'example@example.com', password: 'password1', role: 0)
@@ -36,8 +36,10 @@ RSpec.describe ItemOrder, type: :model do
       expect(item_order_1.can_fulfill?).to eq(true)
       expect(item_order_1.status).to eq('unfulfilled')
 
-      item_order_1.update(quantity: 1000)
+      expect(item_order_1.item.inventory).to eq(12)
       item_order_1.fulfill
+      expect(item_order_1.item.inventory).to eq(10)
+      item_order_1.update(quantity: 1000)
 
       expect(item_order_1.can_fulfill?).to eq(false)
       expect(item_order_1.status).to eq('fulfilled')
