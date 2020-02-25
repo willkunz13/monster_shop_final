@@ -59,6 +59,7 @@ Rails.application.routes.draw do
 	# Merchant Employee
   namespace :merchant_employee do
     get '/dashboard', to: 'dashboard#show'
+    get '/orders/:id', to: 'orders#show'
 		get '/merchants/:id/items', to: 'items#index'
 		get '/merchants/:id/items/new', to: 'items#new'
 		post '/merchants/:id/items', to: 'items#create'
