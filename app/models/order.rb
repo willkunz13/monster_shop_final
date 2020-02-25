@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   has_many :item_orders
   has_many :items, through: :item_orders
 
+  enum status: ['pending', 'packaged', 'shipped', 'cancelled']
+
   def grandtotal
     item_orders.sum('price * quantity')
   end
@@ -30,13 +32,9 @@ class Order < ApplicationRecord
     order(status: :ASC)
   end
 
-  def packaged?
-    true unless self.status != 'packaged'
+  def try_package
+    update(status: 'packaged') if item_orders.distinct.pluck(:status).first == 'fulfilled'
   end
-
-  # def package_fulfilled
-  #   update(status: 'packaged') if item_orders.distinct.pluck(:status) == 'fulfilled'
-  # end
 
 	def merchant_total(merchant_id)
 		item_orders.joins("JOIN items ON item_orders.item_id = items.id").where("items.merchant_id = #{merchant_id}").sum('item_orders.price * item_orders.quantity')

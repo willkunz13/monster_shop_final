@@ -16,5 +16,8 @@ class ItemOrder < ApplicationRecord
 
   def fulfill
     update(status: 1)
+    item.inventory -= quantity
+
+    order.try_package
   end
 end
