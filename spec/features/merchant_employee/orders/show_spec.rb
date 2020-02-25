@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'As a MERCHANT', type: :feature do
+RSpec.describe 'As a Merchant Employee' do
   describe 'When I visit a order show page from dashboard' do
     before :each do
       # merchants
@@ -45,7 +45,7 @@ RSpec.describe 'As a MERCHANT', type: :feature do
       expect(current_path).to eq("/merchant_employee/orders/#{@order_1.id}")
     end
 
-    it 'can see order information on a order page related to itself' do
+    it 'I can see order information on a order page related to itself' do
       visit "/merchant_employee/orders/#{@order_1.id}"
 
       within "#shipping_information" do

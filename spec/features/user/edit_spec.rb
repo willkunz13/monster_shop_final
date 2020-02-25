@@ -10,7 +10,7 @@ RSpec.describe 'As a User' do
       visit '/user/profile'
     end
 
-    it 'allows me to edit my profile' do
+    it 'It allows me to edit my profile' do
       within "#user_buttons" do
         click_on 'Edit'
       end

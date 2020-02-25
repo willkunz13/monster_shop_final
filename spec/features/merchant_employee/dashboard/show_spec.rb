@@ -50,7 +50,7 @@ RSpec.describe 'As a Merchant Employee' do
 			end
 		end
 
-		it 'If any users have pending orders containing items I sell Then I see a list of these orders.' do
+		it 'I see if any users have pending orders containing items I sell Then I see a list of these orders.' do
 
 			within "#order-#{@order_1.id}" do
 				expect(page).to have_link(@order_1.id.to_s)
@@ -60,7 +60,7 @@ RSpec.describe 'As a Merchant Employee' do
 			end
 		end
 
-		it 'If any users have pending orders containing items I sell I Do Not see the items of the other Merchants on this order.' do
+		it 'I see if any users have pending orders containing items I sell I Do Not see the items of the other Merchants on this order.' do
 
 			within "#order-#{@order_1.id}" do
 				expect(page).not_to have_content("Total Quantitiy of Items: #{@order_1.merchant_quantity(@brians_shop.id)}")

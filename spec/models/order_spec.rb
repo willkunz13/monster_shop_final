@@ -10,7 +10,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe "Relationships" do
-	it {should belong_to :user}
+		it {should belong_to :user}
     it {should have_many :item_orders}
     it {should have_many(:items).through(:item_orders)}
   end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Cart show' do
+RSpec.describe 'As a User' do
   describe 'When I have added items to my cart' do
     before(:each) do
       @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -25,7 +25,7 @@ RSpec.describe 'Cart show' do
 			expect(current_path).to eq('/cart')
     end
 
-    it 'Theres a link to checkout' do
+    it 'I see a link to checkout' do
 
       expect(page).to have_link("Checkout")
 
