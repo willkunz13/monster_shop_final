@@ -73,7 +73,6 @@ RSpec.describe 'As a User' do
     end
 
 		it 'I can see a link called My Orders' do
-
       visit '/user/profile'
 
       within '#user_buttons' do
@@ -84,7 +83,6 @@ RSpec.describe 'As a User' do
     end
 
     it 'I can see index of orders from profile page' do
-
       visit '/user/profile'
 
       within '#user_buttons' do
@@ -113,7 +111,6 @@ RSpec.describe 'As a User' do
     end
 
     it 'I can click the order number and be taken to an order show page' do
-
       visit '/user/profile'
 
       within '#user_buttons' do
@@ -127,6 +124,20 @@ RSpec.describe 'As a User' do
       end
 
       expect(current_path).to eq("/user/profile/orders/#{new_order.id}")
+    end
+
+    it 'I can see packaged instead of pending when items have been fulfilled' do
+      new_order = Order.last
+
+      new_order.update(status: 1)
+
+      visit '/user/profile'
+
+      within '#user_buttons' do
+        click_on 'My Orders'
+      end
+
+      expect(page).to have_content('packaged')
     end
   end
 

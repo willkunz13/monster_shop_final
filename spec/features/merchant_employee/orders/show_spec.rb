@@ -62,5 +62,26 @@ RSpec.describe 'As a Merchant Employee' do
         expect(page).to have_content('Doggie Booties')
       end
     end
+
+    it 'can fulfill items from order show page' do
+      visit "/merchant_employee/orders/#{@order_1.id}"
+
+      within "#item-#{@tire.id}" do
+        click_button "Fulfill"
+        expect(page).to have_content('Fulfilled')
+        expect(page).to_not have_button('Fulfill')
+      end
+    end
+
+    it 'cannot fulfill without inventory' do
+      @order_1.item_orders.update(quantity: 1000)
+
+      visit "/merchant_employee/orders/#{@order_1.id}"
+
+      within "#item-#{@tire.id}" do
+        expect(page).to have_content('Not Enough Inventory')
+        expect(page).to_not have_button('Fulfill')
+      end
+    end
   end
 end

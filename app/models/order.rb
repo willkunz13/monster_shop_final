@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   has_many :item_orders
   has_many :items, through: :item_orders
 
+  enum status: ['pending', 'packaged', 'shipped', 'cancelled']
+
   def grandtotal
     item_orders.sum('price * quantity')
   end
@@ -18,25 +20,21 @@ class Order < ApplicationRecord
   end
 
   def cancel
-    update(status: 'cancelled')
+    update(status: 3)
 
-    # item_orders.each do |order|
-    #   order.update(status: 'unfulfilled')
-    #   order.item.update(inventory: (order.item.inventory + order.quantity))
-    # end
+    item_orders.each do |item_order|
+      item_order.update(status: 0)
+      item_order.item.update(inventory: (item_order.item.inventory + item_order.quantity))
+    end
   end
 
   def self.sort_status
     order(status: :ASC)
   end
 
-  def packaged?
-    true unless self.status != 'packaged'
+  def try_package
+    update(status: 1) if item_orders.distinct.pluck(:status).first == 'fulfilled'
   end
-
-  # def package_fulfilled
-  #   update(status: 'packaged') if item_orders.distinct.pluck(:status) == 'fulfilled'
-  # end
 
 	def merchant_total(merchant_id)
 		item_orders.joins("JOIN items ON item_orders.item_id = items.id").where("items.merchant_id = #{merchant_id}").sum('item_orders.price * item_orders.quantity')

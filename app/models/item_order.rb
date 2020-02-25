@@ -9,4 +9,15 @@ class ItemOrder < ApplicationRecord
   def subtotal
     price * quantity
   end
+
+  def can_fulfill?
+    quantity <= item.inventory
+  end
+
+  def fulfill
+    update(status: 1)
+    item.inventory -= quantity
+
+    order.try_package
+  end
 end
