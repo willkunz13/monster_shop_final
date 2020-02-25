@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
     if !session[:user_id].nil?
       redirect_to "/admin/dashboard"
       flash[:notice] = "You are already logged in as #{current_user.name}, to log out please select 'Log Out' at the top of your page."
-    elsif current_merchant?
-      redirect_to "/merchant_employee/dashboard"
-      flash[:notice] = "You are already logged in as #{current_user.name}, to log out please select 'Log Out' at the top of your page."
-    elsif current_default?
-      redirect_to "/user/profile"
-      flash[:notice] = "You are already logged in as #{current_user.name}, to log out please select 'Log Out' at the top of your page."
+    # elsif current_merchant?
+    #   redirect_to "/merchant_employee/dashboard"
+    #   flash[:notice] = "You are already logged in as #{current_user.name}, to log out please select 'Log Out' at the top of your page."
+    # elsif current_default?
+    #   redirect_to "/user/profile"
+    #   flash[:notice] = "You are already logged in as #{current_user.name}, to log out please select 'Log Out' at the top of your page."
     end
   end
 
