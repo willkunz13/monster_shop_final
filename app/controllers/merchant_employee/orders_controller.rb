@@ -9,7 +9,7 @@ class MerchantEmployee::OrdersController < ApplicationController
     merchant = current_user.merchant
     require 'pry'; binding.pry
     order = merchant.item_orders.first
-    order.fulfill
+    order.fulfill_order
     
   end
 end
