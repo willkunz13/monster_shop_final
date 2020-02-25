@@ -21,12 +21,6 @@ Rails.application.routes.draw do
 	# Items
   get '/items', to: 'items#index'
   get '/items/:id', to: 'items#show'
-  get '/items/:id/edit', to: 'items#edit'
-  patch '/items/:id', to: 'items#update'
-  get '/merchants/:merchant_id/items', to: 'items#index'
-  get '/merchants/:merchant_id/items/new', to: 'items#new'
-  post '/merchants/:merchant_id/items', to: 'items#create'
-  delete '/items/:id', to: 'items#destroy'
 
 	# Reviews
   get '/items/:item_id/reviews/new', to: 'reviews#new'
@@ -65,6 +59,13 @@ Rails.application.routes.draw do
 	# Merchant Employee
   namespace :merchant_employee do
     get '/dashboard', to: 'dashboard#show'
+		get '/merchants/:id/items', to: 'items#index'
+		get '/merchants/:id/items/new', to: 'items#new'
+		post '/merchants/:id/items', to: 'items#create'
+		get '/merchants/:id/items/:id', to: 'items#show'
+		get '/merchants/:id/items/:id/edit', to: 'items#edit'
+		patch '/merchants/:id/items/:id', to: 'items#update'
+		delete '/merchants/:id/items/:id', to: 'items#destroy'
   end
 
 	# Admin
