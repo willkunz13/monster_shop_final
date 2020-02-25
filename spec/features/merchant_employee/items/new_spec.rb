@@ -4,16 +4,21 @@ RSpec.describe "Create Merchant Items" do
   describe "When I visit the merchant items index page" do
     before(:each) do
       @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+			@merchant = @brian.users.create!(name: "Merchant", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "merchant@gmail.com", password: "merchant", role: 1)
+
+			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
+
     end
 
     it 'I see a link to add a new item for that merchant' do
-      visit "/merchants/#{@brian.id}/items"
+      visit "/merchant_employee/merchants/#{@brian.id}/items"
 
       expect(page).to have_link "Add New Item"
     end
 
     it 'I can add a new item by filling out a form' do
-      visit "/merchants/#{@brian.id}/items"
+
+			visit "/merchant_employee/merchants/#{@brian.id}/items"
 
       name = "Chamois Buttr"
       price = 18
@@ -24,7 +29,7 @@ RSpec.describe "Create Merchant Items" do
       click_on "Add New Item"
 
       expect(page).to have_link(@brian.name)
-      expect(current_path).to eq("/merchants/#{@brian.id}/items/new")
+      expect(current_path).to eq("/merchant_employee/merchants/#{@brian.id}/items/new")
       fill_in :name, with: name
       fill_in :price, with: price
       fill_in :description, with: description
@@ -35,7 +40,7 @@ RSpec.describe "Create Merchant Items" do
 
       new_item = Item.last
 
-      expect(current_path).to eq("/merchants/#{@brian.id}/items")
+      expect(current_path).to eq("/merchant_employee/merchants/#{@brian.id}/items")
       expect(new_item.name).to eq(name)
       expect(new_item.price).to eq(price)
       expect(new_item.description).to eq(description)
@@ -52,7 +57,8 @@ RSpec.describe "Create Merchant Items" do
     end
 
     it 'I get an alert if I dont fully fill out the form' do
-      visit "/merchants/#{@brian.id}/items"
+
+			visit "/merchant_employee/merchants/#{@brian.id}/items"
 
       name = ""
       price = 18
