@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     get '/profile', to: 'profile#show'
     get '/profile/orders', to: 'profile/orders#index'
     get '/profile/orders/:id', to: 'profile/orders#show'
-    patch '/profile/orders/:id/cancel', to: 'profile/orders#cancel'
+    patch '/profile/orders/:id', to: 'profile/orders#cancel'
   end
 
 	# Merchant Employee
@@ -67,7 +67,8 @@ Rails.application.routes.draw do
 		get '/merchants/:id/items/:id/edit', to: 'items#edit'
 		patch '/merchants/:id/items/:id', to: 'items#update'
 		patch '/merchants/:id/items/:id/update', to: 'item_status#update'
-		delete '/merchants/:id/items/:id', to: 'items#destroy'
+    delete '/merchants/:id/items/:id', to: 'items#destroy'
+    patch '/orders/:id', to: 'item_orders#update'
   end
 
 	# Admin

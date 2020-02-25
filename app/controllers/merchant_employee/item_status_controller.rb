@@ -1,5 +1,4 @@
 class MerchantEmployee::ItemStatusController < MerchantEmployee::BaseController
-
 	def update
 		item = Item.find(params[:id])
 		if item.active?

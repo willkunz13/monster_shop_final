@@ -12,7 +12,7 @@ RSpec.describe 'As a User' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
 
-      @order_1 = @user1.orders.create!(name: @user1.name, address: 'address', city: 'city', state: 'state', zip: 12345, status: 'cancelled')
+      @order_1 = @user1.orders.create!(name: @user1.name, address: 'address', city: 'city', state: 'state', zip: 12345)
 
       visit '/user/profile'
 
@@ -22,7 +22,6 @@ RSpec.describe 'As a User' do
     end
 
     it 'can see a cancel button on show page' do
-
       visit "/user/profile/orders/#{@order_1.id}"
 
       click_on 'Cancel Order'
@@ -33,7 +32,7 @@ RSpec.describe 'As a User' do
 
       visit "/user/profile/orders/#{@order_1.id}"
 
-      expect(page).to have_content(@order_1.status)
+      expect(page).to have_content('cancelled')
     end
   end
 end

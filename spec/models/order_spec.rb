@@ -40,6 +40,14 @@ RSpec.describe Order, type: :model do
 
 		it '.merchant_total' do
 			expect(@order_1.merchant_total(@meg.id)).to eq(200)
-		end
+    end
+
+    it '.try_package' do
+      expect(@order_1.status).to eq('pending')
+
+      @order_1.item_orders.update(status: 1)
+      @order_1.try_package
+      expect(@order_1.status).to eq('packaged')
+    end
   end
 end

@@ -6,7 +6,7 @@ RSpec.describe 'As a MERCHANT', type: :feature do
       # merchants
       @megs_shop = Merchant.create!(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
       @brians_shop = Merchant.create!(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
-      
+
       # megs_shop items
       @tire = @megs_shop.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       @collar = @megs_shop.items.create!(name: "Pretty Collar", description: "Your Pet will look Stunning", price: 150, image: "https://images-na.ssl-images-amazon.com/images/I/61bwboZJNkL._AC_SL1001_.jpg", inventory: 35)
@@ -60,6 +60,27 @@ RSpec.describe 'As a MERCHANT', type: :feature do
         expect(page).to have_content('Gatorskins')
         expect(page).to have_content('Pretty Collar')
         expect(page).to have_content('Doggie Booties')
+      end
+    end
+
+    it 'can fulfill items from order show page' do
+      visit "/merchant_employee/orders/#{@order_1.id}"
+
+      within "#item-#{@tire.id}" do
+        click_button "Fulfill"
+        expect(page).to have_content('Fulfilled')
+        expect(page).to_not have_button('Fulfill')
+      end
+    end
+
+    it 'cannot fulfill without inventory' do
+      @order_1.item_orders.update(quantity: 1000)
+
+      visit "/merchant_employee/orders/#{@order_1.id}"
+
+      within "#item-#{@tire.id}" do
+        expect(page).to have_content('Not Enough Inventory')
+        expect(page).to_not have_button('Fulfill')
       end
     end
   end
