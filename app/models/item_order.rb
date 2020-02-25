@@ -10,8 +10,11 @@ class ItemOrder < ApplicationRecord
     price * quantity
   end
 
-  def fulfill_order
+  def can_fulfill?
+    quantity <= item.inventory
+  end
+
+  def fulfill
     update(status: 1)
-    require 'pry'; binding.pry
   end
 end

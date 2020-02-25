@@ -60,7 +60,6 @@ Rails.application.routes.draw do
   namespace :merchant_employee do
     get '/dashboard', to: 'dashboard#show'
     get '/orders/:id', to: 'orders#show'
-    patch '/orders/:id', to: 'orders#fulfill'
 		get '/merchants/:id/items', to: 'items#index'
 		get '/merchants/:id/items/new', to: 'items#new'
 		post '/merchants/:id/items', to: 'items#create'
@@ -68,7 +67,8 @@ Rails.application.routes.draw do
 		get '/merchants/:id/items/:id/edit', to: 'items#edit'
 		patch '/merchants/:id/items/:id', to: 'items#update'
 		patch '/merchants/:id/items/:id/update', to: 'item_status#update'
-		delete '/merchants/:id/items/:id', to: 'items#destroy'
+    delete '/merchants/:id/items/:id', to: 'items#destroy'
+    patch '/orders/:id', to: 'item_orders#update'
   end
 
 	# Admin

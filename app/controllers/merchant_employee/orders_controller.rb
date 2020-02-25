@@ -4,12 +4,4 @@ class MerchantEmployee::OrdersController < ApplicationController
     @order = merchant.orders.find(params[:id])
     @item_orders = merchant.item_orders.where(order: @order)
   end
-
-  def fulfill
-    merchant = current_user.merchant
-    require 'pry'; binding.pry
-    order = merchant.item_orders.first
-    order.fulfill_order
-    
-  end
 end
