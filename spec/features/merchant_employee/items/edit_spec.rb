@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "As a Visitor" do
+RSpec.describe "As a Merchant Employee" do
   describe "When I visit an Item Show Page" do
     describe "and click on edit item" do
       it 'I can see the prepopulated fields of that item' do

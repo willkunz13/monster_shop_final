@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'As a MERCHANT', type: :feature do
+RSpec.describe 'As a Merchant Employee' do
   describe 'When I visit a order show page from dashboard' do
     before :each do
       # merchants
       @megs_shop = Merchant.create!(name: "Meg's Dog Shop", address: '123 Dog Rd.', city: 'Hershey', state: 'PA', zip: 80203)
       @brians_shop = Merchant.create!(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
-      
+
       # megs_shop items
       @tire = @megs_shop.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       @collar = @megs_shop.items.create!(name: "Pretty Collar", description: "Your Pet will look Stunning", price: 150, image: "https://images-na.ssl-images-amazon.com/images/I/61bwboZJNkL._AC_SL1001_.jpg", inventory: 35)
@@ -45,7 +45,7 @@ RSpec.describe 'As a MERCHANT', type: :feature do
       expect(current_path).to eq("/merchant_employee/orders/#{@order_1.id}")
     end
 
-    it 'can see order information on a order page related to itself' do
+    it 'I can see order information on a order page related to itself' do
       visit "/merchant_employee/orders/#{@order_1.id}"
 
       within "#shipping_information" do

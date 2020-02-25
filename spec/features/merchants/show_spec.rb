@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'merchant show page' do
-  describe 'As a user' do
+RSpec.describe 'As a User' do
+  describe 'When I visit a Merchants Show page.' do
     before :each do
       @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
 			@merchant = @bike_shop.users.create!(name: "Merchant", address: "123 merchant ave.", city: "City of Townsville", state: "Nv", zip: "39433", email: "merchant@gmail.com", password: "merchant", role: 1)

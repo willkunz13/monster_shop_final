@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'As a User' do
+RSpec.describe 'As a User' do
 	describe 'I see a link in my nav bar called logout' do
 		before :each do
 			@user = User.create!(name: "User", address: "123 user way", city: "Town of Citysville", state: "Wy", zip: "80911", email: "user@gmail.com", password: "user", role: 0)

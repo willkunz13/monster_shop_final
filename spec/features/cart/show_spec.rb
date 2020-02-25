@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Cart show' do
+RSpec.describe 'As a User' do
   describe 'When I have added items to my cart' do
     describe 'and visit my cart path' do
       before(:each) do
@@ -83,7 +83,7 @@ RSpec.describe 'Cart show' do
   			end
       end
 
-			it 'says I need to login in or register' do
+			it 'It says I need to login in or register' do
 
 				expect(page).to have_content("You need to register or login to checkout")
 
@@ -98,7 +98,7 @@ RSpec.describe 'Cart show' do
 				expect(current_path).to eq('/login')
 			end
 
-			it 'logged in user can checkout' do
+			it 'If logged in as a user I can checkout' do
 				user = User.create!(name: 'penelope', address: '123 W', city: 'a', state: 'IN', zip: 12345, email: 'a', password: 'boom', role: 0)
 
 				allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)

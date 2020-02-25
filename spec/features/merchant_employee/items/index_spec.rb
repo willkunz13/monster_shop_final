@@ -18,7 +18,7 @@ RSpec.describe "As a Merchant Employee" do
 			visit "/merchant_employee/merchants/#{@meg.id}/items"
     end
 
-    it 'shows me a list of that merchants items' do
+    it 'It shows me a list of that merchants items' do
 
       within "#item-#{@tire.id}" do
         expect(page).to have_content(@tire.name)
