@@ -20,11 +20,11 @@ class Order < ApplicationRecord
   end
 
   def cancel
-    update(status: 'cancelled')
+    update(status: 3)
 
-    item_orders.each do |order|
-      order.update(status: 'unfulfilled')
-      order.item.update(inventory: (order.item.inventory + order.quantity))
+    item_orders.each do |item_order|
+      item_order.update(status: 0)
+      item_order.item.update(inventory: (item_order.item.inventory + item_order.quantity))
     end
   end
 
@@ -33,7 +33,7 @@ class Order < ApplicationRecord
   end
 
   def try_package
-    update(status: 'packaged') if item_orders.distinct.pluck(:status).first == 'fulfilled'
+    update(status: 1) if item_orders.distinct.pluck(:status).first == 'fulfilled'
   end
 
 	def merchant_total(merchant_id)

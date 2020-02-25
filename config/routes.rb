@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     get '/profile', to: 'profile#show'
     get '/profile/orders', to: 'profile/orders#index'
     get '/profile/orders/:id', to: 'profile/orders#show'
-    patch '/profile/orders/:id/cancel', to: 'profile/orders#cancel'
+    patch '/profile/orders/:id', to: 'profile/orders#cancel'
   end
 
 	# Merchant Employee

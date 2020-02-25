@@ -28,6 +28,6 @@
 
 <section id='order_buttons'>
   <% if @order.packaged? || @order.pending? %>
-    <%= button_to  "Cancel Order", "/user/profile/orders/#{@order.id}/cancel", method: :patch %>
+    <%= button_to  "Cancel Order", "/user/profile/orders/#{@order.id}", method: :patch %>
   <% end %>
 </section>
