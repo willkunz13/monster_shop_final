@@ -75,7 +75,7 @@ RSpec.describe 'As an Admin' do
 
 			click_on "Inventory"
 
-			expect(current_path).to eq("/items")
+			expect(current_path).to eq("/admin/merchant_employee/merchants/#{@megs_shop.id}/items")
 			expect(current_path).not_to eq("/merchants/#{@brians_shop.id}/items")
 		end
 	end
