@@ -23,8 +23,11 @@ class Order < ApplicationRecord
     update(status: 3)
 
     item_orders.each do |item_order|
+      if item_order.fulfilled?
+        item_order.item.update(inventory: (item_order.item.inventory + item_order.quantity))
+      end
+
       item_order.update(status: 0)
-      item_order.item.update(inventory: (item_order.item.inventory + item_order.quantity))
     end
   end
 

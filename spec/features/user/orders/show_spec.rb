@@ -163,7 +163,9 @@ RSpec.describe 'As a User' do
 		end
 
 		it 'can see a cancel button on show page' do
-			visit "/user/profile/orders/#{@order_1.id}"
+      visit "/user/profile/orders/#{@order_1.id}"
+      
+      @order_1.item_orders.update(status: 1)
 
 			click_on 'Cancel Order'
 
@@ -180,6 +182,6 @@ RSpec.describe 'As a User' do
 			within "#item-#{@tire.id}" do
 				expect(page).to have_content('Inventory: 14')
 			end
-		end
+    end    
 	end
 end
