@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
 	# Welcome Page
   get '/', to: 'welcome#show'
   get '/welcome', to: 'welcome#show'
