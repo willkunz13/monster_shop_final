@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   # delete '/merchants/:id', to: 'merchants#destroy'
 
 	# Items
-  resources :items, only: [:index]
+  resources :items, only: [:index, :show]
   # get items_path, to: 'items#index'
-  get '/items/:id', to: 'items#show'
+  # get '/items/:id', to: 'items#show'
 
 	# Reviews
   get '/items/:item_id/reviews/new', to: 'reviews#new'
