@@ -41,8 +41,8 @@ Rails.application.routes.draw do
   namespace :user do
     get '/profile/edit', to: 'profile#edit'
     patch '/profile', to: 'profile#update'
-    get '/profile/edit_password', to: 'profile#edit_password'
     get '/profile', to: 'profile#show'
+    get '/profile/edit_password', to: 'profile#edit_password'
     get '/profile/orders', to: 'profile/orders#index'
     get '/profile/orders/:id', to: 'profile/orders#show'
     patch '/profile/orders/:id', to: 'profile/orders#cancel'
