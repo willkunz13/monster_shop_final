@@ -12,13 +12,13 @@ RSpec.describe 'As a User' do
 
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-      visit "/items/#{@paper.id}"
+      visit item_path(@paper)
       click_on "Add To Cart"
-      visit "/items/#{@paper.id}"
+      visit item_path(@paper)
       click_on "Add To Cart"
-      visit "/items/#{@tire.id}"
+      visit item_path(@tire)
       click_on "Add To Cart"
-      visit "/items/#{@pencil.id}"
+      visit item_path(@pencil)
       click_on "Add To Cart"
 
 			visit '/cart'
@@ -79,13 +79,13 @@ RSpec.describe 'As a User' do
 
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-      visit "/items/#{@paper.id}"
+      visit item_path(@paper)
       click_on "Add To Cart"
-      visit "/items/#{@paper.id}"
+      visit item_path(@paper)
       click_on "Add To Cart"
-      visit "/items/#{@tire.id}"
+      visit item_path(@tire)
       click_on "Add To Cart"
-      visit "/items/#{@pencil.id}"
+      visit item_path(@pencil)
       click_on "Add To Cart"
 
       visit "/cart"
