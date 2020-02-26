@@ -74,7 +74,7 @@ RSpec.describe 'As a User' do
 
       click_on "Delete Merchant"
 
-      expect(current_path).to eq('/merchants')
+      expect(current_path).to eq(merchants_path)
       expect(page).to_not have_content("Brian's Bike Shop")
     end
 
@@ -84,7 +84,7 @@ RSpec.describe 'As a User' do
 
       click_on "Delete Merchant"
 
-      expect(current_path).to eq('/merchants')
+      expect(current_path).to eq(merchants_path)
       expect(page).to_not have_content("Brian's Bike Shop")
     end
 

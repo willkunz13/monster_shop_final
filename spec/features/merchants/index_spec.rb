@@ -23,7 +23,7 @@ RSpec.describe 'As a User' do
 
       click_on "New Merchant"
 
-      expect(current_path).to eq("/merchants/new")
+      expect(current_path).to eq(new_merchant_path)
     end
   end
 end
