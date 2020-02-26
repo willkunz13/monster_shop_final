@@ -25,9 +25,12 @@ RSpec.describe Order, type: :model do
 			@user = User.create(name: 'Steve', address: '123 Street Road', city: 'City Name', state: 'CO', zip: 12345, email: 'example@example.com', password: 'password1', role: 0)
 
       @order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user)
+      @order_2 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user)
+      @order_3 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user)
+      @order_4 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user)
 
-      @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
-      @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
+      @item_order_1 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
+      @item_order_2 = @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
     end
 
     it 'grandtotal' do
@@ -48,6 +51,37 @@ RSpec.describe Order, type: :model do
       @order_1.item_orders.update(status: 1)
       @order_1.try_package
       expect(@order_1.status).to eq('packaged')
+    end
+
+    it '.item_count' do
+      expect(@order_1.item_count).to eq(5)
+    end
+
+    it '.items_in_order' do
+      expect(@order_1.items_in_order).to include(@tire)
+      expect(@order_1.items_in_order).to include(@pull_toy)
+    end
+
+    it '.cancel' do
+      @item_order_1.update(status: 1)
+      @item_order_2.update(status: 1)
+      expect(@order_1.status).to eq('pending')
+      @order_1.cancel
+      expect(@order_1.status).to eq('cancelled')
+
+      expect(@item_order_1.status).to eq('unfulfilled')
+      expect(@item_order_2.status).to eq('unfulfilled')
+    end
+
+    it '.sort_status' do
+      @order_1.update(status: 0) # pending
+      @order_2.update(status: 1) # packaged
+      @order_3.update(status: 2) # shipped
+      @order_4.update(status: 3) # cancelled
+
+      expected = [@order_1, @order_2, @order_3, @order_4]
+
+      expect(@user.orders.sort_status).to eq(expected) 
     end
   end
 end
