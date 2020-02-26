@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       elsif current_merchant?
         redirect_to merchant_employee_dashboard_path
       else
-        user_profile_path
+        redirect_to user_profile_path
       end
 
       flash[:notice] = "You are already logged in as #{current_user.name}, to log out please select 'Log Out' at the top of your page."
