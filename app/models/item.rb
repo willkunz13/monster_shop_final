@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-	validates_presence_of :name, :description, :price, :image, :inventory
+	validates_presence_of :name, :description, :price, :inventory
 	validates_numericality_of :price, greater_than: 0
 
   belongs_to :merchant
