@@ -3,19 +3,19 @@ require 'rails_helper'
 RSpec.describe 'Site Navigation' do
   describe 'As a Visitor' do
     it 'I see a nav bar with links to all pages' do
-      visit '/merchants'
+      visit merchants_path
 
       within 'nav' do
         click_link 'All Items'
       end
 
-      expect(current_path).to eq('/items')
+      expect(current_path).to eq(items_path)
 
       within 'nav' do
         click_link 'All Merchants'
       end
 
-      expect(current_path).to eq('/merchants')
+      expect(current_path).to eq(merchants_path)
 
       within 'nav' do
         click_link 'Home'
@@ -25,13 +25,13 @@ RSpec.describe 'Site Navigation' do
     end
 
     it 'I can see a cart indicator on all pages' do
-      visit '/merchants'
+      visit merchants_path
 
       within 'nav' do
         expect(page).to have_content('Cart: 0')
       end
 
-      visit '/items'
+      visit items_path
 
       within 'nav' do
         expect(page).to have_content('Cart: 0')
@@ -56,7 +56,7 @@ RSpec.describe 'Site Navigation' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit '/merchants'
+      visit merchants_path
 
       within 'nav' do
         click_link 'Profile'
@@ -86,7 +86,7 @@ RSpec.describe 'Site Navigation' do
       merchant_employee = meg.users.create(name: 'penelope', address: '123 W', city: 'a', state: 'IN', zip: 12345, email: 'a', password: 'boom', role: 1)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_employee)
-      visit '/merchants'
+      visit merchants_path
 
       within 'nav' do
         click_link 'Profile'
@@ -120,7 +120,7 @@ RSpec.describe 'Site Navigation' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-      visit '/merchants'
+      visit merchants_path
       within 'nav' do
         click_link 'Profile'
       end

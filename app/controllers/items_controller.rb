@@ -41,7 +41,7 @@ class ItemsController<ApplicationController
   #   item = Item.find(params[:id])
   #   Review.where(item_id: item.id).destroy_all
   #   item.destroy
-  #   redirect_to '/items'
+  #   redirect_to items_path
   # end
 
   # private

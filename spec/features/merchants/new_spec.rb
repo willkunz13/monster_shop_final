@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'As a Merchant Employee' do
   describe 'When I visit the Merchant new page. ' do
-		
+
     it 'I can create a new merchant' do
-      visit '/merchants/new'
+      visit new_merchant_path
 
       name = "Sal's Calz(ones)"
       address = '123 Kindalikeapizza Dr.'
@@ -22,7 +22,7 @@ RSpec.describe 'As a Merchant Employee' do
 
       new_merchant = Merchant.last
 
-      expect(current_path).to eq('/merchants')
+      expect(current_path).to eq(merchants_path)
       expect(page).to have_content(name)
       expect(new_merchant.name).to eq(name)
       expect(new_merchant.address).to eq(address)
@@ -33,7 +33,7 @@ RSpec.describe 'As a Merchant Employee' do
 
     it 'I cant create a merchant if all fields are not filled in' do
 
-      visit '/merchants/new'
+      visit new_merchant_path
 
       name = "Sal's Calz(ones)"
       address = ''
