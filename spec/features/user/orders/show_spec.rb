@@ -175,7 +175,7 @@ RSpec.describe 'As a User' do
 
 			expect(page).to have_content('cancelled')
 
-			visit '/items'
+			visit items_path
 
 			within "#item-#{@tire.id}" do
 				expect(page).to have_content('Inventory: 14')

@@ -18,7 +18,7 @@ RSpec.describe 'As a User' do
       click_on "Add To Cart"
 
       expect(page).to have_content("#{@paper.name} was successfully added to your cart")
-      expect(current_path).to eq("/items")
+      expect(current_path).to eq(items_path)
 
       within 'nav' do
         expect(page).to have_content("Cart: 1")

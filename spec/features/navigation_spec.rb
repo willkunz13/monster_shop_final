@@ -9,7 +9,7 @@ RSpec.describe 'Site Navigation' do
         click_link 'All Items'
       end
 
-      expect(current_path).to eq('/items')
+      expect(current_path).to eq(items_path)
 
       within 'nav' do
         click_link 'All Merchants'
@@ -31,7 +31,7 @@ RSpec.describe 'Site Navigation' do
         expect(page).to have_content('Cart: 0')
       end
 
-      visit '/items'
+      visit items_path
 
       within 'nav' do
         expect(page).to have_content('Cart: 0')

@@ -22,7 +22,7 @@ RSpec.describe "As a Visitor" do
     end
 
     it "I see that all items or merchant names are links" do
-      visit '/items'
+      visit items_path
 
       expect(page).to have_link(@tire.name)
       expect(page).to have_link(@tire.merchant.name)
@@ -31,7 +31,7 @@ RSpec.describe "As a Visitor" do
     end
 
     it "I see that all items images are links to its show page" do
-      visit '/items'
+      visit items_path
 
       within "#item-#{@pull_toy.id}" do
         find(:xpath, "//a/img[@alt='Tug toy dog pull 9010 2 800x800']/..").click
@@ -42,7 +42,7 @@ RSpec.describe "As a Visitor" do
 
     it "I can see a list of all of the items except inactive items"do
 
-      visit '/items'
+      visit items_path
 
       within "#item-#{@tire.id}" do
         expect(page).to have_link(@tire.name)
@@ -142,7 +142,7 @@ RSpec.describe "As a Visitor" do
 
     	click_on  'Create Order'
 
-    	visit '/items'
+    	visit items_path
 
     	within("#popular_items") do
       	expect(page).to have_content("Gatorskins: 11 Seat: 10 Pump: 9 Pedals: 8 Helmet: 7")
