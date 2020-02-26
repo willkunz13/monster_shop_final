@@ -212,9 +212,9 @@ describe 'As a Admin' do
         click_on 'Log In'
       end
 
-      expect(current_path).to eq("/admin/dashboard")
-
       visit '/login'
+
+      expect(current_path).to eq("/admin/dashboard")
 
       expect(page).to have_content("You are already logged in as Admin, to log out please select 'Log Out' at the top of your page.")
     end
