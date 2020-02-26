@@ -1,7 +1,7 @@
 <h1><%= link_to @item.name, item_path(@item) %></h1>
 <p align="center">Sold by: <%=link_to @item.merchant.name, "/merchants/#{@item.merchant.id}" %> </p>
 <section align = "center" id = "average-rating">
-  <p>Average Rating: <%= @item.average_review %></p>
+  <p>Average Rating: <%= @item.average_review.round(2) %></p>
 </section>
 <center>
   <section class = "item-show-grid">
@@ -17,8 +17,6 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
-      <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", item_path(@item), method: :delete if @item.no_orders?%></p>
       <%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %>
       <%= button_to "Add To Cart", "/cart/#{@item.id}", method: :post %>
     </section>
