@@ -36,7 +36,7 @@ RSpec.describe "As a Visitor" do
       within "#item-#{@pull_toy.id}" do
         find(:xpath, "//a/img[@alt='Tug toy dog pull 9010 2 800x800']/..").click
 
-        expect(current_path).to eq("/items/#{@pull_toy.id}")
+        expect(current_path).to eq(item_path(@pull_toy))
       end
     end
 
@@ -77,57 +77,57 @@ RSpec.describe "As a Visitor" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       11.times do
-        visit "/items/#{@tire.id}"
+        visit item_path(@tire)
         click_on "Add To Cart"
       end
 
     	10.times do
-      	visit "/items/#{@seat.id}"
+      	visit item_path(@seat)
       	click_on "Add To Cart"
     	end
 
     	9.times do
-      	visit "/items/#{@pump.id}"
+      	visit item_path(@pump)
       	click_on "Add To Cart"
     	end
 
     	8.times do
-      	visit "/items/#{@pedals.id}"
+      	visit item_path(@pedals)
       	click_on "Add To Cart"
     	end
 
     	7.times do
-      	visit "/items/#{@helmet.id}"
+      	visit item_path(@helmet)
       	click_on "Add To Cart"
     	end
 
       6.times do
-        visit "/items/#{@pull_toy.id}"
+        visit item_path(@pull_toy)
         click_on "Add To Cart"
       end
 
     	5.times do
-      	visit "/items/#{@bed.id}"
+      	visit item_path(@bed)
       	click_on "Add To Cart"
     	end
 
     	4.times do
-      	visit "/items/#{@carrier.id}"
+      	visit item_path(@carrier)
       	click_on "Add To Cart"
     	end
 
     	3.times do
-      	visit "/items/#{@dog_food.id}"
+      	visit item_path(@dog_food)
       	click_on "Add To Cart"
     	end
 
     	2.times do
-      	visit "/items/#{@collar.id}"
+      	visit item_path(@collar)
       	click_on "Add To Cart"
     	end
 
     	1.times do
-      	visit "/items/#{@brush.id}"
+      	visit item_path(@brush)
       	click_on "Add To Cart"
     	end
 
