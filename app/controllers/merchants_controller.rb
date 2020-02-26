@@ -29,7 +29,6 @@ class MerchantsController <ApplicationController
     @merchant = Merchant.find(params[:id])
     @merchant.update(merchant_params)
     if @merchant.save
-      # redirect_to "/merchants/#{@merchant.id}"
       redirect_to merchant_path(@merchant)
     else
       flash[:error] = @merchant.errors.full_messages.to_sentence

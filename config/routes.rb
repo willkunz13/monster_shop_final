@@ -11,18 +11,9 @@ Rails.application.routes.draw do
 
 	# Merchants
   resources :merchants
-  # get '/merchants', to: 'merchants#index'
-  # get '/merchants/new', to: 'merchants#new'
-  # get '/merchants/:id', to: 'merchants#show'
-  # post '/merchants', to: 'merchants#create'
-  # get '/merchants/:id/edit', to: 'merchants#edit'
-  # patch '/merchants/:id', to: 'merchants#update'
-  # delete '/merchants/:id', to: 'merchants#destroy'
 
 	# Items
   resources :items, only: [:index, :show]
-  # get items_path, to: 'items#index'
-  # get '/items/:id', to: 'items#show'
 
 	# Reviews
   get '/items/:item_id/reviews/new', to: 'reviews#new'
