@@ -47,9 +47,8 @@ RSpec.describe 'As a User' do
         click_on 'Log In'
       end
 
-      expect(current_path).to eq('/user/profile')
-
       visit '/login'
+      expect(current_path).to eq('/user/profile')
 
       expect(page).to have_content("You are already logged in as User, to log out please select 'Log Out' at the top of your page.")
     end
@@ -130,9 +129,8 @@ describe 'As a Merchant' do
     		click_on 'Log In'
   		end
 
-  		expect(current_path).to eq("/merchant_employee/dashboard")
-
-  		visit '/login'
+      visit '/login'
+      expect(current_path).to eq("/merchant_employee/dashboard")
 
   		expect(page).to have_content("You are already logged in as Merchant, to log out please select 'Log Out' at the top of your page.")
 		end
