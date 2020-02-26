@@ -3,7 +3,7 @@
 <p class="address"><%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %></p>
 
 <ul><%= link_to "All #{@merchant.name} Items", "/merchant_employee/merchants/#{@merchant.id}/items" %></ul>
-<ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
+<ul><%= link_to "Update Merchant", edit_merchant_path %></ul>
 <ul><%= link_to "Delete Merchant", merchant_path(@merchant), method: :delete  if @merchant.no_orders?%>
 </ul>
 <section class = "merchant-stats">
