@@ -13,11 +13,11 @@
       <%= link_to "Home", '/' %>
       <%= link_to "All Items", items_path%>
       <% if !current_user %>
-					<%= link_to "All Merchants", "/merchants"%>
       	  <%= link_to "Cart: #{cart.total_items}", "/cart" %>
           <%= link_to "Register", '/register' %>
           <%= link_to "Log In", '/login' %>
       <% else %>
+				<%= link_to "All Merchants", "/merchants"%>
         <%= link_to "Profile", user_profile_path %>
         <%= link_to "Log Out", "/logout", method: :delete %>
         <%= label_tag "Logged in as #{current_user.name}" %>
