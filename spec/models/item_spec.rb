@@ -105,5 +105,13 @@ RSpec.describe Item, type: :model do
     it '.least_popular' do
       expect(Item.least_popular(5)).to eq([@brush, @collar, @dog_food, @bed, @carrier])
     end
+
+    it '.quantity_by_order' do
+      expect(@tire.quantity_by_order(@order1.id)).to eq(11) 
+    end
+
+    it '.subtotal' do
+      expect(@tire.subtotal(@order1.id)).to eq(1100)
+    end
   end
 end

@@ -13,14 +13,20 @@
     </tr>
 
     <tr id="order_info">
-      <td><p><%= @order.id%></p></td>
+      <td><p><%= @order.id %></p></td>
       <td><p><%= @order.created_at.to_date %></p></td>
       <td><p><%= @order.updated_at.to_date %></p></td>
       <td><p><%= @order.status %></p></td>
-      <td><p><% @order.items_in_order.each do |item| %>
-                  <p><%= item.name %></p>
-                <% end %>
-      </p></td>
+      <td><% @order.items_in_order.each do |item| %>
+                <p>Item Name:<%= item.name %></p>
+                <p>Item description:<%= item.description %></p>
+                <p><%= image_tag item.image, size: 60 %></p>
+                <p>Quantity Ordered: <%= item.quantity_by_order(@order.id) %></p>
+                <p>Item Price: <%= item.price %></p>
+                <p>Item Subtotal: <%= item.subtotal(@order.id) %>
+                <p>-----------------------------------</p>
+              <% end %>
+      </td>
       <td><p><%= @order.item_count %></p></td>
       <td><p>$ <%= number_with_precision @order.grandtotal, precision: 2 %></p></td>
     </tr>
