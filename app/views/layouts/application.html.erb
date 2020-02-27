@@ -11,9 +11,9 @@
   <body>
     <nav class = "topnav">
       <%= link_to "Home", '/' %>
-      <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <% if !current_user %>
+					<%= link_to "All Merchants", "/merchants"%>
       	  <%= link_to "Cart: #{cart.total_items}", "/cart" %>
           <%= link_to "Register", '/register' %>
           <%= link_to "Log In", '/login' %>
@@ -22,13 +22,15 @@
         <%= link_to "Log Out", "/logout", method: :delete %>
         <%= label_tag "Logged in as #{current_user.name}" %>
         <% if current_user.merchant_employee? %>
+					<%= link_to "All Merchants", "/merchants"%>
           <%= link_to "Merchant Employee Dashboard", merchant_employee_dashboard_path %>
           <%= link_to "Cart: #{cart.total_items}", "/cart" %>
         <% elsif current_user.admin? %>
+					<%= link_to "All Merchants", "/admin/merchants"%>
           <%= link_to "Admin Dashboard", admin_dashboard_path %>
           <%= link_to "See All Users", admin_users_path %>
 	<% else %>
-          <%= link_to "Cart: #{cart.total_items}", "/cart" %>	
+          <%= link_to "Cart: #{cart.total_items}", "/cart" %>
         <% end %>
       <% end %>
     </nav>
