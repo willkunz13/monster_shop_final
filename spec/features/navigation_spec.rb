@@ -143,7 +143,7 @@ RSpec.describe 'Site Navigation' do
         click_link 'All Merchants'
       end
 
-      expect(current_path).to eq('/admin/merchants')
+      expect(current_path).to eq('/merchants')
 
       within 'nav' do
         click_link 'Log Out'

@@ -50,5 +50,14 @@ RSpec.describe 'As an Admin' do
 
       expect(current_path).to eq("/admin/dashboard")
     end
+
+		it 'I see a button to visit my merchants index page and can enable or disable a merchant' do
+
+			expect(page).to have_button("Manage Merchants")
+
+			click_on "Manage Merchants"
+
+			expect(current_path).to eq("/admin/merchants")
+		end
   end
 end
