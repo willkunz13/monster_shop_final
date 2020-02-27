@@ -1,5 +1,7 @@
 <h2>Admin Dashboard</h2>
 
+<p><%= button_to "Manage Merchants", "/admin/merchants", method: :get %></p>
+
 <h3>Orders</h3>
 <% @orders.each do |order| %>
   <section id="order-<%= "#{order.id}"%>">
