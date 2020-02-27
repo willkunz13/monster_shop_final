@@ -44,7 +44,6 @@ RSpec.describe 'As an Admin' do
         expect(page).to have_content(@order_3.id)
         expect(page).to have_content(@order_3.created_at.to_date)
       end
-      
       within "#order-#{@order_1.id}" do
         click_on "Ship Package"
       end

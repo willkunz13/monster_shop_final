@@ -8,12 +8,12 @@
 
 <%= link_to "Inventory", "/admin/merchant_employee/merchants/#{@merchant.id}/items" %>
 
-<h4> Orders </h4>
+<h4> Unfulfilled Orders </h4>
 
 <section class='orders'>
 <% @merchant.pending_orders.each do |order| %>
 	<section id='order-<%= order.id %>'>
-		<%= link_to order.id, "/merchant/orders/#{order.id}" %>
+		<%= link_to order.id, "/merchant_employee/orders/#{order.id}" %>
 		<p>Date Order Created: <%= order.created_at %></p>
 		<p>Total Quantitiy of Items: <%= order.merchant_quantity(@merchant.id) %></p>
 		<p>Total Amount to be Charged: $<%= order.merchant_total(@merchant.id) %></p>

@@ -8,7 +8,7 @@
 
 <%= link_to "Inventory", "/merchant_employee/merchants/#{@merchant.id}/items" %>
 
-<h4> Orders </h4>
+<h4> Unfulfilled Orders </h4>
 
 <section class='orders'>
 <% @merchant.pending_orders.each do |order| %>

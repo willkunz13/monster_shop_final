@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
 	# Welcome Page
   get '/', to: 'welcome#show'
   get '/welcome', to: 'welcome#show'
@@ -10,17 +9,10 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
 	# Merchants
-  get '/merchants', to: 'merchants#index'
-  get '/merchants/new', to: 'merchants#new'
-  get '/merchants/:id', to: 'merchants#show'
-  post '/merchants', to: 'merchants#create'
-  get '/merchants/:id/edit', to: 'merchants#edit'
-  patch '/merchants/:id', to: 'merchants#update'
-  delete '/merchants/:id', to: 'merchants#destroy'
+  resources :merchants
 
 	# Items
-  get '/items', to: 'items#index'
-  get '/items/:id', to: 'items#show'
+  resources :items, only: [:index, :show]
 
 	# Reviews
   get '/items/:item_id/reviews/new', to: 'reviews#new'
@@ -49,8 +41,8 @@ Rails.application.routes.draw do
   namespace :user do
     get '/profile/edit', to: 'profile#edit'
     patch '/profile', to: 'profile#update'
-    get '/profile/edit_password', to: 'profile#edit_password'
     get '/profile', to: 'profile#show'
+    get '/profile/edit_password', to: 'profile#edit_password'
     get '/profile/orders', to: 'profile/orders#index'
     get '/profile/orders/:id', to: 'profile/orders#show'
     patch '/profile/orders/:id', to: 'profile/orders#cancel'

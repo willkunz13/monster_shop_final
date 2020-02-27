@@ -10,11 +10,11 @@ RSpec.describe 'As a User' do
       @pencil = @mike.items.create(name: "Yellow Pencil", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 100)
 			@user = User.create(name: 'Steve', address: '123 Street Road', city: 'City Name', state: 'CO', zip: 12345, email: 'example@example.com', password: 'password1', role: 0)
 
-			visit "/items/#{@paper.id}"
+			visit item_path(@paper)
 			click_on "Add To Cart"
-			visit "/items/#{@tire.id}"
+			visit item_path(@tire)
 			click_on "Add To Cart"
-			visit "/items/#{@pencil.id}"
+			visit item_path(@pencil)
 			click_on "Add To Cart"
 			@items_in_cart = [@paper,@tire,@pencil]
 

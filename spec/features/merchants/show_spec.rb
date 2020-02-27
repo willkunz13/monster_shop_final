@@ -8,7 +8,7 @@ RSpec.describe 'As a User' do
 
 			allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
 
-			visit "/merchants/#{@bike_shop.id}"
+			visit merchant_path(@bike_shop)
     end
 
     it 'I can see a merchants name, address, city, state, zip' do
@@ -47,7 +47,7 @@ RSpec.describe 'As a User' do
 		end
 
 		it 'I can see a merchants statistics' do
-			visit "/merchants/#{@brian.id}"
+			visit merchant_path(@brian)
 
 			within ".merchant-stats" do
 				expect(page).to have_content("Number of Items: 2")
@@ -70,21 +70,21 @@ RSpec.describe 'As a User' do
 
     it "I can delete a merchant" do
 
-      visit "merchants/#{@bike_shop.id}"
+      visit merchant_path(@bike_shop)
 
       click_on "Delete Merchant"
 
-      expect(current_path).to eq('/merchants')
+      expect(current_path).to eq(merchants_path)
       expect(page).to_not have_content("Brian's Bike Shop")
     end
 
     it "I can delete a merchant that has items" do
 
-      visit "merchants/#{@bike_shop.id}"
+      visit merchant_path(@bike_shop)
 
       click_on "Delete Merchant"
 
-      expect(current_path).to eq('/merchants')
+      expect(current_path).to eq(merchants_path)
       expect(page).to_not have_content("Brian's Bike Shop")
     end
 
@@ -101,13 +101,13 @@ RSpec.describe 'As a User' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit "/items/#{paper.id}"
+      visit item_path(paper)
       click_on "Add To Cart"
-      visit "/items/#{paper.id}"
+      visit item_path(paper)
       click_on "Add To Cart"
-      visit "/items/#{tire.id}"
+      visit item_path(tire)
       click_on "Add To Cart"
-      visit "/items/#{pencil.id}"
+      visit item_path(pencil)
       click_on "Add To Cart"
 
       visit "/cart"
@@ -127,7 +127,8 @@ RSpec.describe 'As a User' do
 
       click_button "Create Order"
 
-      visit "/merchants/#{meg.id}"
+      visit merchants_path(meg)
+      
       expect(page).to_not have_link("Delete Merchant")
     end
   end

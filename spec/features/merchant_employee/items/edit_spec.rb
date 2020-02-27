@@ -74,7 +74,7 @@ RSpec.describe "As a Merchant Employee" do
 
         click_on "Update Item"
 
-        expect(page).to have_content("Name can't be blank and Image can't be blank")
+        expect(page).to have_content("Name can't be blank")
         expect(page).to have_button("Update Item")
       end
     end

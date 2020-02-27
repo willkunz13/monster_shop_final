@@ -37,11 +37,14 @@
         <td><p><%=link_to item_order.item.name, "/items/#{item_order.item_id}"%></p></td>
         <td><p><%= image_tag item_order.item.image %></p></td>
         <td><p><%= number_to_currency(item_order.price.to_f)%></p></td>
+        <td><p><%= item_order.quantity %></p></td>
         <% if item_order.fulfilled? %>
           <td><p>Fulfilled</p></td>
         <% elsif !(item_order.can_fulfill?) %>
           <td><p>Not Enough Inventory</p></td>
-        <% else %>
+        <% elsif item_order.order.cancelled? %>
+          <td><p>Order Cancelled</p></td>
+        <% else%>
           <td><p><%= button_to "Fulfill", "/merchant_employee/orders/#{item_order.id}", method: :patch %></p></td>
         <% end %>
       </tr>

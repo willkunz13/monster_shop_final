@@ -18,6 +18,8 @@ class ItemOrder < ApplicationRecord
     update(status: 1)
     item.inventory -= quantity
 
+    item.save
+
     order.try_package
   end
 end
