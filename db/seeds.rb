@@ -26,6 +26,9 @@ Order.destroy_all
 # orders
 @order_1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user, status: 'shipped')
 
+#discounts
+@discount = Discount.create(threshold: 10, percent: 20, merchant: @megs_shop)
+
 # add items to order
 @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
 @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)

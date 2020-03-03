@@ -77,5 +77,76 @@ RSpec.describe 'As a Merchant Employee' do
 			expect(current_path).to eq("/merchant_employee/merchants/#{@megs_shop.id}/items")
 			expect(current_path).not_to eq("/merchants/#{@brians_shop.id}/items")
 		end
+
+		it 'create discount' do
+			click_on 'Add Bulk Discount'
+			expect(current_path).to eq("/merchant_employee/discounts/new")
+			fill_in "discount[threshold]", with: 10
+			fill_in "discount[percent]", with: 10
+			click_on "Create"
+			expect(current_path).to eq("/merchant_employee/dashboard")
+			within "#discounts" do	
+				expect(page).to have_content("#{Discount.last.id}")
+				expect(page).to have_content("#{Discount.last.threshold}")
+				expect(page).to have_content("#{Discount.last.percent}")
+			end
+		end
+
+		it 'catch bad discount' do
+			click_on 'Add Bulk Discount'
+                        expect(current_path).to eq("/merchant_employee/discounts/new")
+                        fill_in "discount[threshold]", with: 10
+                        click_on "Create"
+			expect(current_path).to eq("/merchant_employee/discounts/new")	
+			expect(page).to have_content("Percent can't be blank")
+		end
+
+		it 'edit discount' do
+			click_on 'Add Bulk Discount'
+                        fill_in "discount[threshold]", with: 23
+                        fill_in "discount[percent]", with: 10
+                        click_on "Create"
+			within "#discounts" do
+				click_on 'Edit Discount'
+			end
+			expect(current_path).to eq("/merchant_employee/discounts/#{Discount.last.id}/edit")
+			fill_in "discount[percent]", with: 25
+			click_on "Update"
+			expect(current_path).to eq("/merchant_employee/dashboard")
+                        within "#discounts" do
+                                expect(page).to have_content("#{Discount.last.id}")
+                                expect(page).to have_content("#{Discount.last.threshold}")
+                                expect(page).to have_content("#{Discount.last.percent}")
+                        end
+		end
+
+		it 'delete discount' do
+			click_on 'Add Bulk Discount'
+                        fill_in "discount[threshold]", with: 23
+                        fill_in "discount[percent]", with: 10
+                        click_on "Create"
+			within "#discounts" do
+                                click_on 'Delete Discount'
+                        end
+			expect(current_path).to eq("/merchant_employee/dashboard")
+				expect(page).to have_content("Discount Deleted")
+			within "#discounts" do
+				expect(page).to_not have_content("23")
+				expect(page).to_not have_content("10")
+			end
+		end
+
+		it 'catch bad edit discount' do
+			click_on 'Add Bulk Discount'
+                        fill_in "discount[threshold]", with: 23
+                        fill_in "discount[percent]", with: 10
+                        click_on "Create"
+                        within "#discounts" do
+                                click_on 'Edit Discount'
+                        end
+                        fill_in "discount[percent]", with: ""
+                        click_on "Update"
+			expect(page).to have_content("Percent can't be blank and Percent is not a number")
+		end
 	end
 end

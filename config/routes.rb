@@ -52,21 +52,26 @@ Rails.application.routes.draw do
   namespace :merchant_employee do
     get '/dashboard', to: 'dashboard#show'
     get '/orders/:id', to: 'orders#show'
-		get '/merchants/:id/items', to: 'items#index'
-		get '/merchants/:id/items/new', to: 'items#new'
-		post '/merchants/:id/items', to: 'items#create'
-		get '/merchants/:id/items/:id', to: 'items#show'
-		get '/merchants/:id/items/:id/edit', to: 'items#edit'
-		patch '/merchants/:id/items/:id', to: 'items#update'
-		patch '/merchants/:id/items/:id/update', to: 'item_status#update'
+    get '/merchants/:id/items', to: 'items#index'
+    get '/merchants/:id/items/new', to: 'items#new'
+    post '/merchants/:id/items', to: 'items#create'
+    get '/merchants/:id/items/:id', to: 'items#show'
+    get '/merchants/:id/items/:id/edit', to: 'items#edit'
+    patch '/merchants/:id/items/:id', to: 'items#update'
+    patch '/merchants/:id/items/:id/update', to: 'item_status#update'
     delete '/merchants/:id/items/:id', to: 'items#destroy'
     patch '/orders/:id', to: 'item_orders#update'
+    get 'discounts/new', to: 'discounts#new', as: :discounts
+    post 'discounts/', to: 'discounts#create'
+    get 'discounts/:id/edit', to: 'discounts#edit'
+    patch 'discounts/:id', to: 'discounts#update'
+    delete 'discounts/:id', to: 'discounts#destroy'
   end
 
 	# Admin
   namespace :admin do
     get '/dashboard', to: 'dashboard#show'
-		get '/merchant_employee/merchants/:id/items', to: '/merchant_employee/items#index'
+    get '/merchant_employee/merchants/:id/items', to: '/merchant_employee/items#index'
     get '/users', to: 'users#index'
     get '/users/:id', to: 'users#show'
     get '/merchants', to: 'merchants#index'

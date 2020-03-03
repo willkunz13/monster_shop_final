@@ -95,6 +95,8 @@ RSpec.describe Item, type: :model do
       @order1.item_orders.create!(item: @dog_food, price: @dog_food.price, quantity: 3)
       @order1.item_orders.create!(item: @bed, price: @bed.price, quantity: 4)
       @order1.item_orders.create!(item: @carrier, price: @carrier.price, quantity: 5)
+	@discount = Discount.create(threshold: 10, percent: 20, merchant: @meg)
+
 
     end
 
@@ -113,5 +115,18 @@ RSpec.describe Item, type: :model do
     it '.subtotal' do
       expect(@tire.subtotal(@order1.id)).to eq(1100)
     end
+
+	it 'min_qualifier' do
+		expect(@tire.min_qualifier).to eq(10)
+	end
+	
+	it 'discount_percentage' do
+		expect(@tire.discount_percentage(10)).to eq(20.0)
+	end
+
+	it 'max_discount_price' do
+		expect(@tire.max_discount_price(10)).to eq(80.0)
+	end
+	
   end
 end

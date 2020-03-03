@@ -28,7 +28,12 @@ class Cart
 
   def total
     @contents.sum do |item_id,quantity|
-      Item.find(item_id).price * quantity
+      item = Item.find(item_id)
+	if discounted?(item)
+       	   discounted_price(item)
+	else
+	   item.price * quantity
+	end
     end
   end
 
@@ -48,4 +53,27 @@ class Cart
 	def quantity_zero?(item_id)
 		@contents[item_id] == 0
 	end
+
+	def current_quantity(item)
+		contents[item.id.to_s]
+	end
+
+	def discounted?(item)
+		minimum = item.min_qualifier
+		if minimum
+			current_quantity(item) >= minimum
+		else
+			false
+		end
+	end
+
+	def discount_percentage(item)
+		item.discount_percentage(current_quantity(item))
+	end
+
+	def discounted_price(item)
+		quantity = current_quantity(item)
+		item.max_discount_price(quantity) * quantity	
+	end
 end
+

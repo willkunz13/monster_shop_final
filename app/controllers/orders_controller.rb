@@ -13,7 +13,7 @@ class OrdersController <ApplicationController
         order.item_orders.create({
           item: item,
           quantity: quantity,
-          price: item.price
+          price: correct_price(item, quantity)
           })
       end
       session.delete(:cart)
@@ -37,4 +37,13 @@ class OrdersController <ApplicationController
 		:zip
 	).merge(user: current_user)
   end
+
+	def correct_price(item, quantity)
+		minimum = item.min_qualifier
+                if minimum && quantity >= minimum
+			item.max_discount_price(quantity)
+		else
+			item.price 
+		end
+	end
 end

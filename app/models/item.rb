@@ -44,4 +44,19 @@ class Item < ApplicationRecord
   def subtotal(order_id)
     quantity_by_order(order_id) * price
   end
+
+  def min_qualifier
+    merchant.discounts.minimum(:threshold)
+  end
+
+  def discount_percentage(quantity)
+    merchant.discounts.where("threshold <= ?", quantity).maximum(:percent)
+  end
+
+  def max_discount_price(quantity)
+	merchant_id = merchant.id
+	item_id = self.id
+	Merchant.all.joins(:items, :discounts).where("threshold <= ? AND merchants.id = ? AND items.id = ?", quantity, merchant_id, item_id).pluck('items.price  * (1 - discounts.percent/ 100)').min
+  end
+
 end

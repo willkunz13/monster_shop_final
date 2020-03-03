@@ -20,3 +20,14 @@
 	</section>
 <% end %>
 </section>
+
+<section id='discounts'>
+	<%= button_to "Add Bulk Discount", merchant_employee_discounts_path, method: :get %>
+	<% discounts.each do |discount| %>
+		<h3><%= discount.id %></h3>
+		<p> Quantity To Qualify: <%= discount.threshold %></p>
+		<p> Percent Discount: <%= discount.percent %></p>
+		<%= button_to "Edit Discount", "/merchant_employee/discounts/#{discount.id}/edit", method: :get %>
+		<%= button_to "Delete Discount", "/merchant_employee/discounts/#{discount.id}", method: :delete %>
+	<% end %>
+</section>
