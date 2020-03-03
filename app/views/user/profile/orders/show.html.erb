@@ -23,7 +23,7 @@
                 <p><%= image_tag item.image, size: 60 %></p>
                 <p>Quantity Ordered: <%= item.quantity_by_order(@order.id) %></p>
                 <p>Item Price: <%= item.price %></p>
-                <p>Item Subtotal: <%= item.subtotal(@order.id) %>
+                <p>Item Subtotal: <%= number_to_currency(item.subtotal(@order.id)) %>
                 <p>-----------------------------------</p>
               <% end %>
       </td>

@@ -42,7 +42,13 @@ class Item < ApplicationRecord
   end
 
   def subtotal(order_id)
-    quantity_by_order(order_id) * price
+    quantity = quantity_by_order(order_id)
+    discount = max_discount_price(quantity)
+    if discount
+	discount * quantity
+    else
+	quantity * price
+    end
   end
 
   def min_qualifier

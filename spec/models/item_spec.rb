@@ -84,9 +84,9 @@ RSpec.describe Item, type: :model do
 
       @order1 = Order.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, user: @user)
 
-      @order1.item_orders.create!(item: @tire, price: @tire.price, quantity: 11)
-      @order1.item_orders.create!(item: @seat, price: @seat.price, quantity: 10)
-      @order1.item_orders.create!(item: @pump, price: @pump.price, quantity: 9)
+      @order1.item_orders.create!(item: @tire, price: @tire.price, quantity: 9)
+      @order1.item_orders.create!(item: @seat, price: @seat.price, quantity: 11)
+      @order1.item_orders.create!(item: @pump, price: @pump.price, quantity: 10)
       @order1.item_orders.create!(item: @pedals, price: @pedals.price, quantity: 8)
       @order1.item_orders.create!(item: @helmet, price: @helmet.price, quantity: 7)
 
@@ -101,7 +101,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '.most_popular' do
-      expect(Item.most_popular(5)).to eq([@tire, @seat, @pump, @pedals, @helmet])
+      expect(Item.most_popular(5)).to eq([@seat, @pump, @tire, @pedals, @helmet])
     end
 
     it '.least_popular' do
@@ -109,11 +109,13 @@ RSpec.describe Item, type: :model do
     end
 
     it '.quantity_by_order' do
-      expect(@tire.quantity_by_order(@order1.id)).to eq(11) 
+      expect(@tire.quantity_by_order(@order1.id)).to eq(9) 
     end
 
     it '.subtotal' do
-      expect(@tire.subtotal(@order1.id)).to eq(1100)
+      expect(@tire.subtotal(@order1.id)).to eq(900)
+       @order1.item_orders.create!(item: @tire, price: @tire.price, quantity: 11)
+      expect(@tire.subtotal(@order1.id)).to eq(1600)
     end
 
 	it 'min_qualifier' do

@@ -30,6 +30,8 @@ RSpec.describe Cart do
 
 		it ".subtotal" do
 			expect(@cart.subtotal(@paper)).to eq(20)
+			10.times {@cart.add_item(@paper.id.to_s)}
+			expect(@cart.subtotal(@paper)).to eq(176.0)
 		end
 
 		it ".total" do
